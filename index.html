@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Toggles &amp; Switches Examples</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/main.css" />
+
+        <script src="bower_components/html5-polyfills/classList.js"></script>
+    </head>
+<body>
+
+    <header class="masthead">
+        <h1 class="heading">Toggles &amp; Switches</h1>
+        <p class="description">Practical Examples Adapted From <a href="http://tympanus.net/codrops/">Codrops Playground Pieces.</a></p>
+    </header>
+
+    <section class="example sect-cart-popover">
+        <header class="example-title">
+            <h2 class="example-heading">Cart Popover</h2>
+            <p>Adapted from <a href="http://tympanus.net/Development/CheckoutConcepts/">Checkout Concepts</a> by <a href="http://tympanus.net/codrops/author/crnacura/">Mary Lou</a></p>
+        </header>
+		<div class="example-inner dummy-browser">
+			<div class="dummy-header"></div>
+			<div class="checkout">
+				<a class="checkout__button" data-toggle=".checkout" data-toggle-class="checkout--active" href="#"><!-- Fallback location -->
+					<span class="checkout__text">
+						<svg class="checkout__icon" width="30px" height="30px" viewBox="0 0 35 35">
+							<path fill="#fff" d="M33.623,8.004c-0.185-0.268-0.486-0.434-0.812-0.447L12.573,6.685c-0.581-0.025-1.066,0.423-1.091,1.001 c-0.025,0.578,0.423,1.065,1.001,1.091L31.35,9.589l-3.709,11.575H11.131L8.149,4.924c-0.065-0.355-0.31-0.652-0.646-0.785 L2.618,2.22C2.079,2.01,1.472,2.274,1.26,2.812s0.053,1.146 0.591,1.357l4.343,1.706L9.23,22.4c0.092,0.497,0.524,0.857,1.03,0.857 h0.504l-1.15,3.193c-0.096,0.268-0.057,0.565,0.108,0.798c0.163,0.232,0.429,0.37,0.713,0.37h0.807 c-0.5,0.556-0.807,1.288-0.807,2.093c0,1.732,1.409,3.141,3.14,3.141c1.732,0,3.141-1.408,3.141-3.141c0-0.805-0.307-1.537-0.807-2.093h6.847c-0.5,0.556-0.806,1.288-0.806,2.093c0,1.732,1.407,3.141,3.14,3.141 c1.731,0,3.14-1.408,3.14-3.141c0-0.805-0.307-1.537-0.806-2.093h0.98c0.482,0,0.872-0.391,0.872-0.872s-0.39-0.873-0.872-0.873 H11.675l0.942-2.617h15.786c0.455,0,0.857-0.294,0.996-0.727l4.362-13.608C33.862,8.612,33.811,8.272,33.623,8.004z M13.574,31.108c-0.769,0-1.395-0.626-1.395-1.396s0.626-1.396,1.395-1.396c0.77,0,1.396,0.626,1.396,1.396S14.344,31.108,13.574,31.108z M25.089,31.108c-0.771,0-1.396 0.626-1.396-1.396s0.626-1.396,1.396-1.396c0.77,0,1.396,0.626,1.396,1.396 S25.858,31.108,25.089,31.108z"/>
+						</svg>
+					</span>
+				</a>
+				<div class="checkout__order">
+					<div class="checkout__order-inner">
+						<table class="checkout__summary">
+							<thead>
+						        <tr><th>Your Order</th><th>Price</th></tr>
+						    </thead>
+						    <tfoot>
+						        <tr><th colspan="2">Total <span class="checkout__total">$56.20</span></th></tr>
+						    </tfoot>
+						    <tbody>
+								<tr><td>Imitations <span>Mark Lanegan</span></td><td>$9.90</td></tr>
+								<tr><td>In The Silence <span>Ásgeir</span></td><td>$5.50</td></tr>
+								<tr><td>Out Of Exile <span>Audioslave</span></td><td>$11.00</td></tr>
+								<tr><td>London <span>Frank Sinatra</span></td><td>$19.90</td></tr>
+								<tr><td>Cure For Pain <span>Morphine</span></td><td>$9.90</td></tr>
+							</tbody>
+						</table><!-- /checkout__summary -->
+						<button class="checkout__option checkout__option--silent checkout__cancel"><i class="fa fa-angle-left"></i> Continue Shopping</button><button class="checkout__option">Buy</button>
+						<button class="checkout__close" data-switch-off=".checkout" data-switch-class="checkout--active" >Close</button>
+					</div><!-- /checkout__order-inner -->
+				</div><!-- /checkout__order -->
+			</div><!-- /checkout -->
+			<div class="dummy-grid dummy-grid--filled">
+				<div class="dummy-grid__item"></div>
+				<div class="dummy-grid__item"></div>
+				<div class="dummy-grid__item"></div>
+				<div class="dummy-grid__item"></div>
+				<div class="dummy-grid__item"></div>
+				<div class="dummy-grid__item"></div>
+				<div class="dummy-grid__item"></div>
+				<div class="dummy-grid__item"></div>
+			</div><!-- /dummy-grid -->
+		</div>
+	</section>
+    <section class="example sect-dialog">
+        <header class="example-title">
+            <h2 class="example-heading">Sexy Dialog Box</h2>
+            <p>Adapted from <a href="http://tympanus.net/Development/DialogEffects/">Dialog Effects</a> by <a href="http://tympanus.net/codrops/author/crnacura/">Mary Lou</a></p>
+            <div class="button-wrap"><button data-switch-on=".dialog" data-switch-class="dialog--open">Open Dialog Modal</button></div>
+        </header>
+        <div id="somedialog" class="dialog dialog--closed">
+            <div class="dialog__overlay"></div>
+            <div class="dialog__content">
+                <h2><strong>Herroe</strong>, I'm your new bestest dialog box friend</h2>
+                <div>
+                    <button data-switch-off=".dialog" data-switch-class="dialog--open">Close</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="example sect-nested-accordion">
+        <header class="example-title">
+            <h2 class="example-heading">Accordions</h2>
+            <p>Adapted from <a href="http://tympanus.net/Blueprints/NestedAccordion/">Nested Accordion</a> by <a href="http://tympanus.net/codrops/author/crnacura/">Mary Lou</a></p>
+        </header>
+        <div class="example-inner">
+            <ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+                <li class="accordion-item-1">
+                    <h3 class="cbp-nttrigger" data-toggle=".accordion-item-1" data-toggle-class="cbp-ntopen" data-switch-off=".accordion-item-2,.accordion-item-3,.accordion-item-4,.accordion-item-5" data-switch-class="cbp-ntopen">Oat cake tootsie roll</h3>
+                    <div class="cbp-ntcontent">
+                        <p>Jelly sweet roll dragée gummies. Jelly-o cotton candy gingerbread. Dessert tart bear claw gummi bears I love oat cake cotton candy sesame snaps carrot cake. Croissant marshmallow tiramisu icing soufflé chocolate cake. I love pie icing. Sweet I love sweet roll cheesecake dessert. Tiramisu gingerbread I love. Muffin chocolate cake powder cheesecake oat cake tootsie roll candy soufflé. Brownie toffee powder tiramisu. Wafer I love jujubes croissant. Chocolate cake candy jujubes tootsie roll bonbon toffee I love. Topping candy jelly-o. Halvah faworki I love I love toffee pastry icing chupa chups. Pie gingerbread candy canes oat cake.</p>
+                        <ul class="cbp-ntsubaccordion">
+                            <li class="accordion-item-1-sub-1">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-1-sub-1" data-toggle-class="cbp-ntopen">Donut pastry</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Gingerbread cotton candy halvah gingerbread. Apple pie wypas liquorice I love chocolate cake I love. Jelly cotton candy wypas lemon drops. Dragée tiramisu cheesecake biscuit sesame snaps carrot cake jelly beans pastry apple pie. Chocolate cake cotton candy candy canes brownie ice cream. Muffin chocolate cake jelly-o cake pudding. Jujubes I love cookie. I love cupcake I love bear claw sweet croissant. Wypas bonbon chocolate cake bonbon bear claw gummies. Liquorice danish jelly tootsie roll. I love danish icing lemon drops dessert pie jujubes. Fruitcake wafer I love biscuit. Donut pastry apple pie sugar plum soufflé ice cream tart bonbon candy.</p>
+                                </div>
+                            </li>
+                            <li class="accordion-item-1-sub-2">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-1-sub-2" data-toggle-class="cbp-ntopen">Carrot cake</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Wafer muffin cupcake apple pie tootsie roll I love. Carrot cake apple pie I love dessert. I love carrot cake lollipop jelly jelly-o brownie cake. Croissant brownie donut gingerbread dessert icing. Sugar plum jelly candy pudding liquorice liquorice cotton candy pie. Powder sesame snaps I love chocolate bar bonbon. Pudding gummi bears donut applicake carrot cake I love I love icing cake.</p>
+                                </div>
+                            </li>
+                            <li class="accordion-item-1-sub-3">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-1-sub-3" data-toggle-class="cbp-ntopen">Tootsie roll marshmallow</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>I love tootsie roll marshmallow. Halvah jelly bear claw lemon drops lollipop. Brownie tiramisu I love I love halvah wafer. Powder jelly beans sesame snaps. Powder biscuit I love wypas soufflé apple pie marzipan. Cheesecake apple pie halvah croissant jelly I love.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="accordion-item-2">
+                    <h3 class="cbp-nttrigger" data-toggle=".accordion-item-2" data-toggle-class="cbp-ntopen" data-switch-off=".accordion-item-1,.accordion-item-3,.accordion-item-4,.accordion-item-5" data-switch-class="cbp-ntopen">Cream gummi bears</h3>
+                    <div class="cbp-ntcontent">
+                        <p>Cotton candy chocolate cake macaroon applicake I love. Tart soufflé I love powder. I love tiramisu lollipop pie. Pudding gummi bears sweet. Candy chocolate I love jujubes pie donut. Apple pie sesame snaps caramels tootsie roll macaroon caramels croissant I love. Sweet roll chocolate lemon drops. I love I love muffin gummi bears I love cotton candy.</p>
+                        <ul class="cbp-ntsubaccordion">
+                            <li class="accordion-item-2-sub-1">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-2-sub-1" data-toggle-class="cbp-ntopen">Cookie ice cream</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Liquorice jelly-o oat cake gingerbread chocolate caramels chupa chups muffin candy. I love dessert biscuit halvah lemon drops. Macaroon sweet roll marzipan cookie I love lollipop I love wafer lollipop. Caramels candy pudding brownie. Oat cake cake gingerbread bear claw croissant dessert. Lemon drops oat cake sugar plum wypas cupcake fruitcake liquorice. Muffin wafer tootsie roll caramels. I love brownie powder icing marzipan dragée. Pie fruitcake soufflé sweet roll faworki candy canes I love. Jelly-o carrot cake donut cheesecake.</p>
+                                </div>
+                            </li>
+                            <li class="accordion-item-2-sub-2">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-2-sub-2" data-toggle-class="cbp-ntopen">Biscuit chupa chups tart</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Sweet muffin fruitcake. Marshmallow dessert gummies dragée. Dragée pudding caramels toffee I love I love. Pie candy canes soufflé candy jelly-o marshmallow marshmallow. Biscuit danish jelly beans lollipop sweet sesame snaps oat cake. I love chupa chups cake ice cream ice cream applicake tart. Dessert muffin chocolate bar.</p>
+                                </div>
+                            </li>
+                            <li class="accordion-item-2-sub-3">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-2-sub-3" data-toggle-class="cbp-ntopen">Chocolate tart macaroon</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Faworki oat cake cotton candy cookie ice cream gummi bears. Ice cream bear claw icing macaroon apple pie caramels. Sugar plum applicake candy canes sesame snaps I love. Sugar plum brownie biscuit tiramisu marzipan. Ice cream I love sweet bear claw I love sweet cake tart. Danish marshmallow I love wypas pastry. Chocolate tart macaroon wypas sesame snaps apple pie chocolate sesame snaps. Cotton candy sweet roll pudding oat cake I love marzipan wafer chocolate cake.</p>
+                                </div>
+                            </li>
+                            <li class="accordion-item-2-sub-4">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-2-sub-4" data-toggle-class="cbp-ntopen">Lollipop liquorice</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Cookie ice cream sweet I love cupcake. Fruitcake topping wafer. Lollipop liquorice I love tart wypas biscuit. Danish jelly-o gingerbread. Faworki jelly pastry. Wypas wypas topping I love I love candy canes liquorice. I love sweet roll fruitcake dragée wafer icing bonbon.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="accordion-item-3">
+                    <h3 class="cbp-nttrigger" data-toggle=".accordion-item-3" data-toggle-class="cbp-ntopen" data-switch-off=".accordion-item-1,.accordion-item-2,.accordion-item-4,.accordion-item-5" data-switch-class="cbp-ntopen">Jelly marzipan sugar plum</h3>
+                    <div class="cbp-ntcontent">
+                        <p>Jujubes bonbon oat cake. Cookie cookie liquorice bear claw pudding jelly-o. Sugar plum oat cake cookie. Sweet pudding tiramisu. Donut bear claw marshmallow tootsie roll I love lollipop icing. Candy chocolate bar biscuit cake tart candy donut. Carrot cake tiramisu carrot cake I love chocolate cake cake pastry carrot cake faworki. Jujubes marzipan carrot cake lemon drops dragée cake fruitcake macaroon dessert. Cotton candy I love icing powder. Gummies marzipan biscuit I love I love pudding.</p>
+                        <ul class="cbp-ntsubaccordion">
+                            <li class="accordion-item-3-sub-1">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-3-sub-1" data-toggle-class="cbp-ntopen">Toffee soufflé chocolate bar</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Carrot cake chocolate cake cupcake pudding chocolate sweet. Dragée liquorice macaroon cookie dragée jelly beans. I love liquorice applicake cheesecake. I love jelly marzipan sugar plum bonbon. Pastry chupa chups pie jelly candy canes. Donut carrot cake ice cream pudding halvah jelly cupcake. Danish candy canes topping.</p>
+                                </div>
+                            </li>
+                            <li class="accordion-item-3-sub-2">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-3-sub-2" data-toggle-class="cbp-ntopen">Subtitle</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Dragée chocolate cake cake. Marshmallow toffee chocolate cake. Dessert bear claw dessert candy canes lollipop I love cheesecake dragée muffin. Oat cake cupcake chocolate cotton candy. Danish sweet oat cake. Cookie bear claw bear claw bear claw wypas candy canes icing. Candy canes powder toffee soufflé chocolate bar macaroon. Soufflé I love brownie cookie I love chupa chups. Pastry pudding icing.</p>
+                                </div>
+                            </li>
+                            <li class="accordion-item-3-sub-3">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-3-sub-3" data-toggle-class="cbp-ntopen">Pie wafer brownie</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Macaroon I love faworki halvah lollipop croissant chocolate cake lemon drops cheesecake. Croissant cookie halvah tiramisu powder tootsie roll applicake lemon drops. Ice cream jelly powder I love candy canes biscuit gingerbread jelly I love. Sugar plum marshmallow marzipan bear claw cookie. Jelly-o I love cake danish I love. Wypas donut dessert. I love carrot cake oat cake I love I love lollipop donut. Pie wafer brownie. Cake toffee marshmallow I love I love jelly-o.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="accordion-item-4">
+                    <h3 class="cbp-nttrigger" data-toggle=".accordion-item-4" data-toggle-class="cbp-ntopen" data-switch-off=".accordion-item-1,.accordion-item-2,.accordion-item-3,.accordion-item-5" data-switch-class="cbp-ntopen">Danish soufflé</h3>
+                    <div class="cbp-ntcontent">
+                        <p>Lemon drops ice cream I love danish soufflé cake jelly cupcake. Bear claw I love I love tart I love liquorice bear claw. Halvah chocolate gummi bears jelly-o jelly-o lollipop lemon drops liquorice. Candy canes tiramisu candy faworki apple pie. Chocolate jujubes sesame snaps ice cream cupcake. Halvah topping chupa chups biscuit. I love I love chupa chups tootsie roll marshmallow tart gummi bears chocolate.</p>
+                        <ul class="cbp-ntsubaccordion">
+                            <li class="accordion-item-4-sub-1">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-4-sub-1" data-toggle-class="cbp-ntopen">Biscuit bear claw bear claw</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Halvah I love jelly beans. Danish I love jelly beans sweet roll tart biscuit. Lemon drops wypas toffee candy canes lemon drops dragée. Sweet roll I love bonbon I love. Liquorice chocolate bar lollipop faworki lollipop sugar plum. Soufflé croissant lemon drops cotton candy. Jelly candy canes cupcake halvah macaroon.</p>
+                                </div>
+                            </li>
+                            <li class="accordion-item-4-sub-2">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-4-sub-2" data-toggle-class="cbp-ntopen">Jujubes bear claw topping applecake</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Pastry ice cream pie marshmallow muffin gingerbread. Bonbon wafer sweet roll candy lollipop. Sugar plum jujubes sweet roll donut gummi bears chupa chups ice cream. Icing I love apple pie lemon drops faworki sugar plum sweet roll. Marshmallow liquorice cotton candy jujubes chocolate bar fruitcake topping carrot cake. Chocolate croissant cupcake macaroon pastry gummi bears jelly beans. Oat cake bear claw lollipop chocolate cake. Ice cream danish faworki dragée I love chupa chups cotton candy I love. Cookie gummi bears oat cake faworki powder. Wypas jelly bonbon tiramisu apple pie jelly beans.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="accordion-item-5">
+                    <h3 class="cbp-nttrigger" data-toggle=".accordion-item-5" data-toggle-class="cbp-ntopen" data-switch-off=".accordion-item-1,.accordion-item-2,.accordion-item-3,.accordion-item-4" data-switch-class="cbp-ntopen">Jujubes bear claw topping</h3>
+                    <div class="cbp-ntcontent">
+                        <p>Cotton candy chocolate cake macaroon applicake I love. Tart soufflé I love powder. I love tiramisu lollipop pie. Pudding gummi bears sweet. Candy chocolate I love jujubes pie donut. Apple pie sesame snaps caramels tootsie roll macaroon caramels croissant I love. Sweet roll chocolate lemon drops. I love I love muffin gummi bears I love cotton candy.</p>
+                        <ul class="cbp-ntsubaccordion">
+                            <li class="accordion-item-5-sub-1">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-5-sub-1" data-toggle-class="cbp-ntopen">Faworki jelly pastry</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Liquorice jelly-o oat cake gingerbread chocolate caramels chupa chups muffin candy. I love dessert biscuit halvah lemon drops. Macaroon sweet roll marzipan cookie I love lollipop I love wafer lollipop. Caramels candy pudding brownie. Oat cake cake gingerbread bear claw croissant dessert. Lemon drops oat cake sugar plum wypas cupcake fruitcake liquorice. Muffin wafer tootsie roll caramels. I love brownie powder icing marzipan dragée. Pie fruitcake soufflé sweet roll faworki candy canes I love. Jelly-o carrot cake donut cheesecake.</p>
+                                    <ul class="cbp-ntsubaccordion">
+                                        <li class="accordion-item-5-sub-1-sub-1">
+                                            <h5 class="cbp-nttrigger" data-toggle=".accordion-item-5-sub-1-sub-1" data-toggle-class="cbp-ntopen">Donut pastry</h5>
+                                            <div class="cbp-ntcontent">
+                                                <p>Gingerbread cotton candy halvah gingerbread. Apple pie wypas liquorice I love chocolate cake I love. Jelly cotton candy wypas lemon drops. Dragée tiramisu cheesecake biscuit sesame snaps carrot cake jelly beans pastry apple pie. Chocolate cake cotton candy candy canes brownie ice cream. Muffin chocolate cake jelly-o cake pudding. Jujubes I love cookie. I love cupcake I love bear claw sweet croissant. Wypas bonbon chocolate cake bonbon bear claw gummies. Liquorice danish jelly tootsie roll. I love danish icing lemon drops dessert pie jujubes. Fruitcake wafer I love biscuit. Donut pastry apple pie sugar plum soufflé ice cream tart bonbon candy.</p>
+                                            </div>
+                                        </li>
+                                        <li class="accordion-item-5-sub-1-sub-2">
+                                            <h5 class="cbp-nttrigger" data-toggle=".accordion-item-5-sub-1-sub-2" data-toggle-class="cbp-ntopen">Carrot cake</h5>
+                                            <div class="cbp-ntcontent">
+                                                <p>Wafer muffin cupcake apple pie tootsie roll I love. Carrot cake apple pie I love dessert. I love carrot cake lollipop jelly jelly-o brownie cake. Croissant brownie donut gingerbread dessert icing. Sugar plum jelly candy pudding liquorice liquorice cotton candy pie. Powder sesame snaps I love chocolate bar bonbon. Pudding gummi bears donut applicake carrot cake I love I love icing cake.</p>
+                                            </div>
+                                        </li>
+                                        <li class="accordion-item-5-sub-1-sub-3">
+                                            <h5 class="cbp-nttrigger" data-toggle=".accordion-item-5-sub-1-sub-3" data-toggle-class="cbp-ntopen">Tootsie roll marshmallow</h5>
+                                            <div class="cbp-ntcontent">
+                                                <p>I love tootsie roll marshmallow. Halvah jelly bear claw lemon drops lollipop. Brownie tiramisu I love I love halvah wafer. Powder jelly beans sesame snaps. Powder biscuit I love wypas soufflé apple pie marzipan. Cheesecake apple pie halvah croissant jelly I love.</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="accordion-item-5-sub-2">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-5-sub-2" data-toggle-class="cbp-ntopen">Chocolate caramels</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Faworki oat cake cotton candy cookie ice cream gummi bears. Ice cream bear claw icing macaroon apple pie caramels. Sugar plum applicake candy canes sesame snaps I love. Sugar plum brownie biscuit tiramisu marzipan. Ice cream I love sweet bear claw I love sweet cake tart. Danish marshmallow I love wypas pastry. Chocolate tart macaroon wypas sesame snaps apple pie chocolate sesame snaps. Cotton candy sweet roll pudding oat cake I love marzipan wafer chocolate cake.</p>
+                                </div>
+                            </li>
+                            <li class="accordion-item-5-sub-3">
+                                <h4 class="cbp-nttrigger" data-toggle=".accordion-item-5-sub-3" data-toggle-class="cbp-ntopen">Lollipop liquorice</h4>
+                                <div class="cbp-ntcontent">
+                                    <p>Cookie ice cream sweet I love cupcake. Fruitcake topping wafer. Lollipop liquorice I love tart wypas biscuit. Danish jelly-o gingerbread. Faworki jelly pastry. Wypas wypas topping I love I love candy canes liquorice. I love sweet roll fruitcake dragée wafer icing bonbon.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="example">
+        <header class="example-title">
+            <h2 class="example-heading">Responsive Tabs</h2>
+            <p>Adapted From <a href="http://tympanus.net/Blueprints/FullWidthTabs/">Responsive Full-Width Tabs</a> by <a href="http://tympanus.net/codrops/author/crnacura/">Mary Lou</a></p>
+        </header>
+        <div id="tabs" class="tabs">
+			<nav>
+				<ul>
+					<li class="tab-current" data-tab="1" data-switch-on="[data-tab='1']" data-switch-class="tab-current" data-switch-off="[data-tab='2'], [data-tab='3'], [data-tab='4'], [data-tab='5']"><a href="#section-1" class="icon-shop"><span>Shop</span></a></li>
+					<li data-tab="2" data-switch-on="[data-tab='2']" data-switch-class="tab-current" data-switch-off="[data-tab='1'], [data-tab='3'], [data-tab='4'], [data-tab='5']"><a href="#section-2" class="icon-cup"><span>Drinks</span></a></li>
+					<li data-tab="3" data-switch-on="[data-tab='3']" data-switch-class="tab-current" data-switch-off="[data-tab='1'], [data-tab='2'], [data-tab='4'], [data-tab='5']"><a href="#section-3" class="icon-food"><span>Food</span></a></li>
+					<li data-tab="4" data-switch-on="[data-tab='4']" data-switch-class="tab-current" data-switch-off="[data-tab='1'], [data-tab='2'], [data-tab='3'], [data-tab='5']"><a href="#section-4" class="icon-lab"><span>Lab</span></a></li>
+					<li data-tab="5" data-switch-on="[data-tab='5']" data-switch-class="tab-current" data-switch-off="[data-tab='1'], [data-tab='2'], [data-tab='3'], [data-tab='4']"><a href="#section-5" class="icon-truck"><span>Order</span></a></li>
+				</ul>
+			</nav>
+			<div class="content">
+				<section data-tab="1" class="tab-current">
+					<div class="mediabox">
+						<img src="img/01.jpg" alt="img01" />
+						<h3>Sushi Gumbo Beetroot</h3>
+						<p>Sushi gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.</p>
+					</div>
+					<div class="mediabox">
+						<img src="img/02.jpg" alt="img02" />
+						<h3>Pea Sprouts Fava Soup</h3>
+						<p>Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea.</p>
+					</div>
+					<div class="mediabox">
+						<img src="img/03.jpg" alt="img03" />
+						<h3>Turnip Broccoli Sashimi</h3>
+						<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>
+					</div>
+				</section>
+				<section data-tab="2">
+					<div class="mediabox">
+						<img src="img/04.jpg" alt="img04" />
+						<h3>Asparagus Cucumber Cake</h3>
+						<p>Chickweed okra pea winter purslane coriander yarrow sweet pepper radish garlic brussels sprout groundnut summer purslane earthnut pea tomato spring onion azuki bean gourd. </p>
+					</div>
+					<div class="mediabox">
+						<img src="img/05.jpg" alt="img05" />
+						<h3>Magis Kohlrabi Gourd</h3>
+						<p>Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard.</p>
+					</div>
+					<div class="mediabox">
+						<img src="img/06.jpg" alt="img06" />
+						<h3>Ricebean Rutabaga</h3>
+						<p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. </p>
+					</div>
+				</section>
+				<section data-tab="3">
+					<div class="mediabox">
+						<img src="img/02.jpg" alt="img02" />
+						<h3>Noodle Curry</h3>
+						<p>Lotus root water spinach fennel kombu maize bamboo shoot green bean swiss chard seakale pumpkin onion chickpea gram corn pea.Sushi gumbo beet greens corn soko endive gumbo gourd.</p>
+					</div>
+					<div class="mediabox">
+						<img src="img/06.jpg" alt="img06" />
+						<h3>Leek Wasabi</h3>
+						<p>Sushi gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.</p>
+					</div>
+					<div class="mediabox">
+						<img src="img/01.jpg" alt="img01" />
+						<h3>Green Tofu Wrap</h3>
+						<p>Pea horseradish azuki bean lettuce avocado asparagus okra. Kohlrabi radish okra azuki bean corn fava bean mustard tigernut wasabi tofu broccoli mixture soup.</p>
+					</div>
+				</section>
+				<section data-tab="4">
+					<div class="mediabox">
+						<img src="img/03.jpg" alt="img03" />
+						<h3>Tomato Cucumber Curd</h3>
+						<p>Chickweed okra pea winter purslane coriander yarrow sweet pepper radish garlic brussels sprout groundnut summer purslane earthnut pea tomato spring onion azuki bean gourd. </p>
+					</div>
+					<div class="mediabox">
+						<img src="img/01.jpg" alt="img01" />
+						<h3>Mushroom Green</h3>
+						<p>Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. Grape wattle seed kombu beetroot horseradish carrot squash brussels sprout chard.</p>
+					</div>
+					<div class="mediabox">
+						<img src="img/04.jpg" alt="img04" />
+						<h3>Swiss Celery Chard</h3>
+						<p>Celery quandong swiss chard chicory earthnut pea potato. Salsify taro catsear garlic gram celery bitterleaf wattle seed collard greens nori. </p>
+					</div>
+				</section>
+				<section data-tab="5">
+					<div class="mediabox">
+						<img src="img/02.jpg" alt="img02" />
+						<h3>Radish Tomato</h3>
+						<p>Catsear cauliflower garbanzo yarrow salsify chicory garlic bell pepper napa cabbage lettuce tomato kale arugula melon sierra leone bologi rutabaga tigernut.</p>
+					</div>
+					<div class="mediabox">
+						<img src="img/06.jpg" alt="img06" />
+						<h3>Fennel Wasabi</h3>
+						<p>Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic.</p>
+					</div>
+					<div class="mediabox">
+						<img src="img/01.jpg" alt="img01" />
+						<h3>Red Tofu Wrap</h3>
+						<p>Green horseradish azuki bean lettuce avocado asparagus okra. Kohlrabi radish okra azuki bean corn fava bean mustard tigernut wasabi tofu broccoli mixture soup.</p>
+					</div>
+				</section>
+			</div><!-- /content -->
+		</div><!-- /tabs -->
+    </section>
+    <section class="example sect-gridlist">
+        <header class="example-title">
+            <h2 class="example-heading">Grid/List Switcher</h2>
+            <p>By <a href="http://www.digitalsurgeons.com">Digital Surgeons</a></p>
+        </header>
+        <div class="row">
+            <ul class="view-switcher">
+                <li>
+                    <a href="#" class="icon-grid" data-switch-replace="[data-resources-list]" data-switch-add="its-a-grid" data-switch-remove="its-a-list" data-switch-on=".view-switcher .icon-grid" data-switch-off=".view-switcher .icon-list"></a>
+                </li>
+                <li>
+                    <a href="#" class="icon-list active" data-switch-replace="[data-resources-list]" data-switch-add="its-a-list" data-switch-remove="its-a-grid" data-switch-on=".view-switcher .icon-list" data-switch-off=".view-switcher .icon-grid"></a>
+                </li>
+            </ul>
+        </div>
+        <ul class="list-or-grid its-a-list" data-resources-list>
+            <li>
+                <img src="http://www.wired.com/wp-content/uploads/2014/09/apple-event-0909-28.jpg" />
+                <div class="listgrid-copy">
+                    <h4>Item 1</h4>
+                    <p>Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic. Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic.</p>
+                </div>
+            </li>
+            <li>
+                <img src="http://www.wired.com/wp-content/uploads/2014/09/apple-event-0909-28.jpg" />
+                <div class="listgrid-copy">
+                    <h4>Item 2</h4>
+                    <p>Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic. Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic.</p>
+                </div>
+            </li>
+            <li>
+                <img src="http://www.wired.com/wp-content/uploads/2014/09/apple-event-0909-28.jpg" />
+                <div class="listgrid-copy">
+                    <h4>Item 3</h4>
+                    <p>Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic. Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic.</p>
+                </div>
+            </li>
+            <li>
+                <img src="http://www.wired.com/wp-content/uploads/2014/09/apple-event-0909-28.jpg" />
+                <div class="listgrid-copy">
+                    <h4>Item 4</h4>
+                    <p>Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic. Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic.</p>
+                </div>
+            </li>
+            <li>
+                <img src="http://www.wired.com/wp-content/uploads/2014/09/apple-event-0909-28.jpg" />
+                <div class="listgrid-copy">
+                    <h4>Item 3</h4>
+                    <p>Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic. Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic.</p>
+                </div>
+            </li>
+            <li>
+                <img src="http://www.wired.com/wp-content/uploads/2014/09/apple-event-0909-28.jpg" />
+                <div class="listgrid-copy">
+                    <h4>Item 4</h4>
+                    <p>Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic. Sea lettuce gumbo grape kale kombu cauliflower salsify kohlrabi okra sea lettuce broccoli celery lotus root carrot winter purslane turnip greens garlic.</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <p><a class="ds-logo" href="http://www.digitalsurgeons.com"></a></p>
+
+    <script src="toggles-switches.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        	console.log('Toggles & Switches');
+
+        	[].forEach.call(document.querySelectorAll('[data-toggle], [data-switch-on], [data-switch-off], [data-toggle-replace], [data-switch-replace]'), function(btn) {
+        		btn.addEventListener('ToggleSwitch.toggled', function() {
+        			console.log("Toggled!", this);
+        		});
+
+        		btn.addEventListener('ToggleSwitch.added', function() {
+        			console.log("Added!", this);
+        		});
+
+        		btn.addEventListener('ToggleSwitch.removed', function() {
+        			console.log("Removed!", this);
+        		});
+
+        		btn.addEventListener('ToggleSwitch.replaced', function() {
+        			console.log("Replaced!", this);
+        		});
+        	});
+        });
+
+        // IE sucks.
+        // https://css-tricks.com/ie-10-specific-styles/
+        var doc = document.documentElement;
+        doc.setAttribute('data-useragent', navigator.userAgent);
+
+    </script>
+</body>
+</html>

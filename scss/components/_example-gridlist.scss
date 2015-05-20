@@ -1,0 +1,122 @@
+// Responsive
+$large: em(1200);
+$desktop: em(900);
+$tablet: em(600);
+
+@mixin aspect-ratio($width, $height) {
+	$ratio: percentage($height/$width);
+	height: 0;
+	padding-bottom: $ratio;
+	position: relative;
+	> *:first-child {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: auto;
+	}
+}
+
+@mixin vertical-align {
+	position: relative;
+	top: 50%;
+	@include transform(translate3d(0,-50%,0));
+}
+
+.example.sect-gridlist {
+    padding: 0 em(20);
+}
+
+.row {
+    @include outer-container;
+}
+
+.view-switcher {
+	float: none;
+	overflow: hidden;
+	margin: 30px 0;
+	width: 100%;
+	background-color: #eee;
+
+	@include media($tablet) {
+		width: em(200);
+	    float: right;
+	}
+
+    li {
+        width: 50%;
+        float: left;
+        a {
+            display: inline-block;
+        	padding: 0.8em 0;
+			font-size: 1.5em;
+			color: black;
+			&.active {
+				color: #477DCA;
+			}
+        }
+    }
+}
+
+.list-or-grid {
+    @include outer-container;
+	overflow: auto;
+    &.its-a-grid li {
+        @include span-columns(6);
+        margin-bottom: em(30);
+
+		&:nth-child(3n - 1) {
+			@include omega;
+		}
+
+		@include media($tablet) {
+			@include span-columns(4);
+
+			&:nth-child(3n - 1) {
+				margin-right: flex-gutter();
+			}
+
+			&:nth-child(4n - 1) {
+	            @include omega;
+	        }
+		}
+
+        img {
+            width: 100%;
+			margin-bottom: em(20);
+			-webkit-transform: translate3d(0,0,0);
+			@include transition-duration(.2s);
+        }
+		.listgrid-copy {
+			-webkit-transform: translate3d(0,0,0);
+			@include transition-duration(.2s);
+		}
+    }
+    &.its-a-list li {
+        @include span-columns(12);
+        @include omega;
+        margin-bottom: $gutter;
+		position: relative;
+
+		@include media($tablet) {
+			height: 190px;
+		}
+
+        img {
+			margin-bottom: 20px;
+			@include transition-duration(.2s);
+			@include media($tablet) {
+				margin-bottom: 0;
+				@include span-columns(3);
+			}
+        }
+
+        .listgrid-copy {
+			@include transition-duration(.2s);
+            text-align: left;
+			@include media($tablet) {
+				@include span-columns(9);
+			}
+        }
+    }
+}

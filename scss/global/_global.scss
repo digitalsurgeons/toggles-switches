@@ -1,0 +1,25 @@
+@import 'icons';
+@import 'typography';
+
+.example {
+    position: relative;
+}
+.content {
+	margin: 0 auto;
+	padding: 2em 0;
+	max-width: 1000px;
+	text-align: right;
+}
+
+.masthead {
+    padding: em(60) em(20);
+    background-color: #33435c;
+}
+.masthead .heading {
+    color: #eee890;
+    margin-bottom: em(10, 60);
+}
+
+.masthead .description {
+    color: #c5ee90;
+}

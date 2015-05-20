@@ -1,9 +1,14 @@
 {
-  "name": "toggles-switches",
-  "version": "1.1.0",
-  "main": "toggles-switches.js",
-  "ignore": [
-    ".gitignore",
-    ".git"
-  ]
+  "name": "DS Boilerplate",
+  "version": "0.0.0",
+  "authors": [
+    "Digital Surgeons"
+  ],
+  "description": "A client side boilerplate for Digital Surgeons projects",
+  "main": "index.html",
+  "private": true,
+  "dependencies": {
+    "html5-polyfills": "*",
+    "normalize-scss": "~3.0.1"
+  }
 }

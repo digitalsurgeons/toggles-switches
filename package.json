@@ -1,0 +1,15 @@
+{
+  "name": "DSBoilerplate",
+  "version": "0.0.0",
+  "devDependencies": {
+    "gulp": "^3.8.6",
+    "gulp-livereload": "^2.1.0",
+    "gulp-notify": "^1.4.1",
+    "gulp-ruby-sass": "^1.0.1",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-util": "^3.0.2",
+    "gulp-if": "^1.2.5",
+    "gulp-watch": "^0.6.8",
+    "tiny-lr": "0.0.9"
+  }
+}

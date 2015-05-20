@@ -1,0 +1,139 @@
+.example.sect-dialog {
+	height: 600px;
+	background: #353535;
+	padding: em(60) em(20);
+	position: relative;
+	z-index: 10;
+	.example-title {
+		position: relative;
+		top: 50%;
+		z-index: 0;
+		@include transform(translateY(-50%));
+		p {
+			margin-bottom: 40px;
+			color: #fff;
+			a {
+				color: #eee89b;
+			}
+		}
+	}
+	.example-heading {
+		color: #fff;
+	}
+}
+
+.dialog,
+.dialog__overlay {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+
+// Hide the dialog on our ancient "frIEnd"
+html[data-useragent*='MSIE 10.0'] .dialog {
+	z-index: -1;
+}
+
+// Show it when he's ready.
+html[data-useragent*='MSIE 10.0'] .dialog.dialog--open {
+	z-index: 100;
+}
+
+.dialog {
+	position: fixed;
+	@include display(flex);
+	@include justify-content(center);
+	@include align-items(center);
+	pointer-events: none;
+	ms-pointer-events: none;
+	z-index: 1;
+}
+
+.dialog__overlay {
+	position: absolute;
+	background: rgba(55, 58, 71, 0.9);
+	opacity: 0;
+	z-index: 100;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+	-webkit-backface-visibility: hidden;
+}
+
+.dialog--open .dialog__overlay {
+	opacity: 1;
+	z-index: 5000;
+	pointer-events: auto;
+}
+
+.dialog__content {
+	width: 50%;
+	max-width: 560px;
+	min-width: 290px;
+	background: #fff;
+	padding: 4em;
+	text-align: center;
+	position: relative;
+	z-index: 0;
+	opacity: 0;
+}
+
+.dialog--open .dialog__content {
+	pointer-events: auto;
+	z-index: 5000;
+}
+
+/* Content */
+.dialog h2 {
+	margin: 0;
+	font-weight: 400;
+	font-size: 2em;
+	padding: 0 0 2em;
+	margin: 0;
+}
+
+.dialog__overlay {
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+}
+
+.dialog.dialog--open .dialog__content,
+.dialog.dialog--close .dialog__content {
+	-webkit-animation-duration: 0.4s;
+	animation-duration: 0.4s;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+.dialog.dialog--open .dialog__content {
+	-webkit-animation-name: anim-open;
+	animation-name: anim-open;
+	-webkit-animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+	animation-timing-function: cubic-bezier(0.6,0,0.4,1);
+}
+
+.dialog.dialog--close .dialog__content {
+	-webkit-animation-name: anim-close;
+	animation-name: anim-close;
+}
+
+@-webkit-keyframes anim-open {
+	0% { opacity: 0; -webkit-transform: scale3d(0, 0, 1); }
+	100% { opacity: 1; -webkit-transform: scale3d(1, 1, 1); }
+}
+
+@keyframes anim-open {
+	0% { opacity: 0; -webkit-transform: scale3d(0, 0, 1); transform: scale3d(0, 0, 1); }
+	100% { opacity: 1; -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1); }
+}
+
+@-webkit-keyframes anim-close {
+	0% { opacity: 1; }
+	100% { opacity: 0; -webkit-transform: scale3d(0.5, 0.5, 1); }
+}
+
+@keyframes anim-close {
+	0% { opacity: 1; }
+	100% { opacity: 0; -webkit-transform: scale3d(0.5, 0.5, 1); transform: scale3d(0.5, 0.5, 1); }
+}

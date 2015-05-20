@@ -1,0 +1,68 @@
+@import "../bower_components/normalize-scss/normalize";
+
+@import "bourbon/bourbon";
+@import "neat/neat";
+
+@import "base/base";
+
+body {
+	text-align: center;
+	color: #000;
+	@include transition(.3s);
+
+	&.active {
+		background: #c0392b;
+		color: #fff;
+	}
+
+	&.active-literally {
+		background: #3498db;
+		color: #ecf0f1;
+	}
+
+	&.active, &.active-literally {
+		.ds-logo {
+			background-position: 0 -30px;
+		}
+	}
+}
+
+.heading {
+	font-size: 60px;
+	margin: 20px 0;
+}
+
+.description {
+	margin-bottom: 60px;
+}
+
+.sub-heading {
+	text-transform: uppercase;
+	font-size: 20px;
+	margin: 10px 0;
+}
+
+.example-row {
+	margin-bottom: 40px;
+
+	button {
+		margin: 0 5px 9px 0;
+	}
+}
+
+.ds-logo {
+	display: block;
+	width: 198px;
+	height: 31px;
+	margin: 80px auto 20px;
+	background: url(http://www.digitalsurgeons.com/img/sprite_digitalsurgeons.png) no-repeat;
+}
+
+@import "global/global";
+@import "global/structure";
+@import "components/example-checkout";
+@import "components/example-accordion";
+@import "components/example-dialog";
+@import "components/example-tabs";
+@import "components/example-dropdown";
+@import "components/example-gridlist";
