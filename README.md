@@ -1,6 +1,6 @@
 # Toggles & Switches
 
-**Toggles & Swicthes** were born out of [Gumby Framework](http://gumbyframework.com), a responsive [Sass](http://sass-lang.com/) framework. Now a standalone library, **Toggles & Switches** aims to eliminate boilerplate UI code and provide a declarative syntax for applying CSS states and animations based on user interaction. Check out the [demo page]() for real world examples.
+**Toggles & Swicthes** were born out of [Gumby Framework](http://gumbyframework.com), a responsive [Sass](http://sass-lang.com/) framework built by [Digital Surgeons](http://www.digitalsurgeons.com/). Now a standalone library, **Toggles & Switches** aims to eliminate boilerplate UI code and provide a declarative syntax for applying CSS states and animations based on user interaction. Check out the [demo page](http://dsurgeons.github.io/Toggles-Switches/) for real world examples.
 
 CSS is powerful and usually handles a good deal of UI state and animation alone. Because pseudo states only exist for :hover, :active, :focus and :visited, developers must rely on JavaScript to bind to other user interaction events and add or remove CSS classes accordingly.
 
@@ -16,7 +16,10 @@ Using a declarative syntax, classes can be added, removed, toggled and replaced 
 
 ## Installation ##
 
-To get started, download toggles-switches.js and include in your page or as part of a build process. And that's it! Everything else is expressed using data-attributes directly within your HTML, read on for more.
+To get started, install the [Bower](http://bower.io/) package or directly download toggles-switches.js and include in your page or as part of a build process. And that's it! Everything else is expressed using data-attributes directly within your HTML, read on for more.
+
+	# install package with Bower
+	$ bower install --save toggles-switches
 
 ## Toggles
 
@@ -184,7 +187,7 @@ Add one class and remove another from an element.
 
 ## Browser Support ##
 
-Toggles & Switches supports all major browsers including IE 11/10. For IE9 support you will need to include a ClassList polyfill such as the one found in [Remy Sharp's HTML5 Polyfills project](https://github.com/remy/polyfills). Once classList is polyfilled, Toggles & Switches will run as expected in IE9.
+**Toggles & Switches** supports all major browsers including IE 11/10. For IE9 support you will need to include a ClassList polyfill such as the one found in [Remy Sharp's HTML5 Polyfills project](https://github.com/remy/polyfills). Once classList is polyfilled, **Toggles & Switches** will run as expected in IE9.
 
 
 **MIT License (MIT)**
