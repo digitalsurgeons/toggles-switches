@@ -1,0 +1,172 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Toggles &amp; Switches Tests</title>
+</head>
+<body class="inactive custom-2">
+
+    <h1>Toggles &amp; Switches Tests</h1>
+
+    <h2>Basic</h2>
+    <ol>
+        <li>
+            <p><strong>Add .active to self</strong></p>
+            <pre><code>data-switch-on</code></pre>
+            <a href="#" data-switch-on>Click me</a>
+        </li>
+        <li>
+            <p><strong>Remove .active from self</strong></p>
+            <pre><code>data-switch-off</code></pre>
+            <a href="#" data-switch-off class="active">Click me</a>
+        </li>
+        <li>
+            <p><strong>Toggle .active on self</strong></p>
+            <pre><code>data-toggle</code></pre>
+            <a href="#" data-toggle>Click me</a>
+        </li>
+        <li>
+            <p><strong>Add .active and remove .inactive from self</strong></p>
+            <pre><code>data-switch-replace data-switch-add="active" data-switch-remove="inactive"</code></pre>
+            <a href="#" data-switch-replace data-switch-add="active" data-switch-remove="inactive" class="inactive">Click me</a>
+        </li>
+        <li>
+            <p><strong>Toggle between .active and .inactive on self</strong></p>
+            <pre><code>data-toggle-replace data-toggle-add="active" data-toggle-remove="active"</code></pre>
+            <a href="#" data-toggle-replace data-toggle-add="active" data-toggle-remove="inactive" class="inactive">Click me</a>
+        </li>
+    </ol>
+
+    <h2>Targets</h2>
+    <ol>
+        <li>
+            <p><strong>Add .active to body</strong></p>
+            <pre><code>data-switch-on="body"</code></pre>
+            <a href="#" data-switch-on="body">Click me</a>
+        </li>
+        <li>
+            <p><strong>Remove .active from body</strong></p>
+            <pre><code>data-switch-off="body"</code></pre>
+            <a href="#" data-switch-off="body" class="active">Click me</a>
+        </li>
+        <li>
+            <p><strong>Toggle .active on body</strong></p>
+            <pre><code>data-toggle="body"</code></pre>
+            <a href="#" data-toggle="body">Click me</a>
+        </li>
+        <li>
+            <p><strong>Add .active and remove .inactive from body</strong></p>
+            <pre><code>data-switch-replace="body" data-switch-add="active" data-switch-remove="inactive"</code></pre>
+            <a href="#" data-switch-replace="body" data-switch-add="active" data-switch-remove="inactive">Click me</a>
+        </li>
+        <li>
+            <p><strong>Toggle between .active and .inactive on body</strong></p>
+            <pre><code>data-toggle-replace="body" data-toggle-add="active" data-toggle-remove="active"</code></pre>
+            <a href="#" data-toggle-replace="body" data-toggle-add="active" data-toggle-remove="inactive">Click me</a>
+        </li>
+    </ol>
+
+    <h2>Custom Classes</h2>
+    <ol>
+        <li>
+            <p><strong>Add .custom to body</strong></p>
+            <pre><code>data-switch-on="body" data-switch-class="custom"</code></pre>
+            <a href="#" data-switch-on="body" data-switch-class="custom">Click me</a>
+        </li>
+        <li>
+            <p><strong>Remove .custom from body</strong></p>
+            <pre><code>data-switch-off="body" data-switch-class="custom"</code></pre>
+            <a href="#" data-switch-off="body" data-switch-class="custom" class="custom">Click me</a>
+        </li>
+        <li>
+            <p><strong>Toggle .custom on body</strong></p>
+            <pre><code>data-toggle="body" data-toggle-class="custom"</code></pre>
+            <a href="#" data-toggle="body" data-toggle-class="custom">Click me</a>
+        </li>
+        <li>
+            <p><strong>Add .custom and remove .custom-2 from body</strong></p>
+            <pre><code>data-switch-replace="body" data-switch-add="custom" data-switch-remove="custom-2"</code></pre>
+            <a href="#" data-switch-replace="body" data-switch-add="custom" data-switch-remove="custom-2" class="inactive">Click me</a>
+        </li>
+        <li>
+            <p><strong>Toggle between .custom and .custom-2 on body</strong></p>
+            <pre><code>data-toggle-replace="body" data-toggle-add="custom" data-toggle-remove="custom-2"</code></pre>
+            <a href="#" data-toggle-replace="body" data-toggle-add="custom" data-toggle-remove="custom-2" class="inactive">Click me</a>
+        </li>
+    </ol>
+
+    <h2>Custom Events</h2>
+    <ol>
+        <li>
+            <p><strong>Add .active to body on mouseover</strong></p>
+            <pre><code>data-switch-on="body" data-switch-event="mouseover"</code></pre>
+            <a href="#" data-switch-on="body" data-switch-event="mouseover">Mouseover</a>
+        </li>
+        <li>
+            <p><strong>Remove .active from body on mouseout</strong></p>
+            <pre><code>data-switch-off="body" data-switch-event="mouseout"</code></pre>
+            <a href="#" data-switch-off="body" data-switch-event="mouseout" class="active">Mouseout</a>
+        </li>
+        <li>
+            <p><strong>Toggle .active on body on mouseover/out</strong></p>
+            <pre><code>data-toggle="body" data-toggle-event="mouseover,mouseout"</code></pre>
+            <a href="#" data-toggle="body" data-toggle-event="mouseover,mouseout">Hover on/off</a>
+        </li>
+        <li>
+            <p><strong>Add .active and remove .inactive from body on keyup</strong></p>
+            <pre><code>data-switch-replace="body" data-switch-add="active" data-switch-remove="inactive" data-switch-event="keyup"</code></pre>
+            <input type="text" data-switch-replace="body" data-switch-add="active" data-switch-remove="inactive" data-switch-event="keyup" />
+        </li>
+        <li>
+            <p><strong>Toggle between .active and .inactive on body on change</strong></p>
+            <pre><code>data-toggle-replace="body" data-toggle-add="active" data-toggle-remove="active" data-switch-event="change"</code></pre>
+            <select data-toggle-replace="body" data-toggle-add="active" data-toggle-remove="inactive" data-toggle-event="change">
+                <option>Choose one...</option>
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+            </select>
+        </li>
+    </ol>
+
+    <h2>Composing</h2>
+    <ol>
+        <li>
+            <p><strong>Toggle .active on self on mouseover and remove .inactive from body on click</strong></p>
+            <pre><code>data-toggle data-toggle-event="mouseover" data-switch-off="body" data-switch-class="inactive"</code></pre>
+            <a href="#" data-toggle data-toggle-event="mouseover" data-switch-off="body" data-switch-class="inactive">Mouseover and click</a>
+        </li>
+
+        <li>
+            <p><strong>Toggle .active on self on keyup, add .active to self on mouseout</strong></p>
+            <pre><code>data-toggle data-toggle-event="mouseover" data-switch-off="body" data-switch-class="inactive"</code></pre>
+            <input type="text" data-toggle data-toggle-event="keyup" data-switch-on data-switch-event="mouseout" />
+        </li>
+    </ol>
+
+    <script src="toggles-switches.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        	console.log('Toggles & Switches');
+
+        	[].forEach.call(document.querySelectorAll('[data-toggle], [data-switch-on], [data-switch-off], [data-toggle-replace], [data-switch-replace]'), function(btn) {
+        		btn.addEventListener('ToggleSwitch.toggled', function() {
+        			console.log("Toggled!", this);
+        		});
+
+        		btn.addEventListener('ToggleSwitch.added', function() {
+        			console.log("Added!", this);
+        		});
+
+        		btn.addEventListener('ToggleSwitch.removed', function() {
+        			console.log("Removed!", this);
+        		});
+
+        		btn.addEventListener('ToggleSwitch.replaced', function() {
+        			console.log("Replaced!", this);
+        		});
+        	});
+        });
+    </script>
+</body>
+</htmL>
