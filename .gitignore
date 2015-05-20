@@ -44,3 +44,12 @@ dwsync.xml
 .svn
 .CVS
 .idea
+
+node_modules
+bower_components
+css
+scss
+img
+fonts
+package.json
+index.html
