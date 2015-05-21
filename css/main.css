@@ -637,12 +637,14 @@ body {
   .example-row button {
     margin: 0 5px 9px 0; }
 
-.ds-logo {
-  display: block;
-  width: 198px;
-  height: 31px;
-  margin: 80px auto 20px;
-  background: url(http://www.digitalsurgeons.com/img/sprite_digitalsurgeons.png) no-repeat; }
+.ds-creds {
+  padding: 80px 0; }
+  .ds-creds .logo {
+    display: block;
+    width: 198px;
+    height: 31px;
+    margin: 20px auto;
+    background: url(http://www.digitalsurgeons.com/img/sprite_digitalsurgeons.png) no-repeat; }
 
 @font-face {
   font-family: 'icomoon';
