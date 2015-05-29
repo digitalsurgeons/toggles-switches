@@ -144,6 +144,18 @@
         </li>
     </ol>
 
+    <h2>Toggle Watchers</h2>
+    <ol data-toggle-switch-watch class="toggle-watchers">
+        <li><a href="#" data-toggle>Toggle</a></li>
+    </ol>
+    <button class="add-toggle">Add Toggles</button>
+
+    <h2>Switch Watchers</h2>
+    <ol data-toggle-switch-watch class="switch-watchers">
+        <li><a href="#" data-switch-on>Switch</a></li>
+    </ol>
+    <button class="add-switch">Add Switches</button>
+
     <script src="toggles-switches.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -166,6 +178,57 @@
         			console.log("Replaced!", this);
         		});
         	});
+
+            var toggleWatchers = {
+                btn: document.querySelector('.add-toggle'),
+                list: document.querySelector('.toggle-watchers'),
+                num: 1,
+                i: 0,
+                newListItem: null,
+                newItem: null
+            };
+
+            toggleWatchers.btn.addEventListener('click', function(e) {
+                for(toggleWatchers.i = 0; toggleWatchers.i < toggleWatchers.num; toggleWatchers.i++) {
+                    toggleWatchers.newListItem = document.createElement('li');
+                    toggleWatchers.newItem = document.createElement('a');
+
+                    toggleWatchers.newItem.setAttribute('href', '#');
+                    toggleWatchers.newItem.setAttribute('data-toggle', '');
+                    toggleWatchers.newItem.innerHTML = 'Toggle';
+
+                    toggleWatchers.newListItem.appendChild(toggleWatchers.newItem);
+                    toggleWatchers.list.appendChild(toggleWatchers.newListItem);
+                }
+
+                toggleWatchers.num++;
+            });
+
+            var switchWatchers = {
+                btn: document.querySelector('.add-switch'),
+                list: document.querySelector('.switch-watchers'),
+                num: 1,
+                i: 0,
+                newListItem: null,
+                newItem: null
+            };
+
+            switchWatchers.btn.addEventListener('click', function(e) {
+                for(switchWatchers.i = 0; switchWatchers.i < switchWatchers.num; switchWatchers.i++) {
+                    switchWatchers.newListItem = document.createElement('li');
+                    switchWatchers.newItem = document.createElement('a');
+
+                    switchWatchers.newItem.setAttribute('href', '#');
+                    switchWatchers.newItem.setAttribute('data-switch-on', '');
+                    switchWatchers.newItem.innerHTML = 'Switch';
+
+                    switchWatchers.newListItem.appendChild(switchWatchers.newItem);
+                    switchWatchers.list.appendChild(switchWatchers.newListItem);
+                }
+
+                switchWatchers.num++;
+            });
+
         });
     </script>
 </body>
