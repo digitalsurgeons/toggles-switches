@@ -381,8 +381,8 @@
 	}
 
 	// create mutation observers for watchers
-
 	(function() {
+		// check for mutation observers before using, IE11 only
 		if(window.MutationObserver == undefined) {
 			return;
 		}
