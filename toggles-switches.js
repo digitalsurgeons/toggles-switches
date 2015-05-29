@@ -381,7 +381,8 @@
 	// create mutation observers for watchers
 	[].forEach.call(document.querySelectorAll('[data-toggle-switch-watch]'), function(w) {
 		var observer = new MutationObserver(function(mutations) {
-			console.log("Mutation!");
+			// target will match between all mutations so just use first
+			initialize(mutations[0].target);
 		});
 
 		observer.observe(w, {
