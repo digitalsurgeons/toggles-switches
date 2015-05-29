@@ -152,9 +152,9 @@
 
     <h2>Switch Watchers</h2>
     <ol data-toggle-switch-watch class="switch-watchers">
-        <li><a href="#" data-switch>Switch</a></li>
+        <li><a href="#" data-switch-on>Switch</a></li>
     </ol>
-    <button class="add-switch">Add Toggles</button>
+    <button class="add-switch">Add Switches</button>
 
     <script src="toggles-switches.js"></script>
     <script>
@@ -219,7 +219,7 @@
                     switchWatchers.newItem = document.createElement('a');
 
                     switchWatchers.newItem.setAttribute('href', '#');
-                    switchWatchers.newItem.setAttribute('data-switch', '');
+                    switchWatchers.newItem.setAttribute('data-switch-on', '');
                     switchWatchers.newItem.innerHTML = 'Switch';
 
                     switchWatchers.newListItem.appendChild(switchWatchers.newItem);
