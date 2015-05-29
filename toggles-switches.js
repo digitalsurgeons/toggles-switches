@@ -28,6 +28,9 @@
 		// if target is empty default to element itself
 		this.target = this.target ? document.querySelectorAll(this.target) : [this.element];
 
+		// mark this element as initialised
+		this.element.setAttribute('data-toggle-switch', 'switch');
+
 		// set up switch custom events
 		_createCustomEvents.apply(this);
 
@@ -51,6 +54,9 @@
 
 		// if target is empty default to element itself
 		this.target = this.target ? document.querySelectorAll(this.target) : [this.element];
+
+		// mark this element as initialised
+		this.element.setAttribute('data-toggle-switch', 'toggle');
 
 		// set up toggle custom events
 		_createCustomEvents.apply(this);
