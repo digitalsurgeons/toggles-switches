@@ -381,16 +381,23 @@
 	}
 
 	// create mutation observers for watchers
-	[].forEach.call(document.querySelectorAll('[data-toggle-switch-watch]'), function(w) {
-		var observer = new MutationObserver(function(mutations) {
-			// target will match between all mutations so just use first
-			initialize(mutations[0].target);
-		});
 
-		observer.observe(w, {
-			childList: true
+	(function() {
+		if(window.MutationObserver == undefined) {
+			return;
+		}
+
+		[].forEach.call(document.querySelectorAll('[data-toggle-switch-watch]'), function(w) {
+			var observer = new MutationObserver(function(mutations) {
+				// target will match between all mutations so just use first
+				initialize(mutations[0].target);
+			});
+
+			observer.observe(w, {
+				childList: true
+			});
 		});
-	});
+	})();
 
 	// initialize toggles & switches in entire document
 	initialize(document);
