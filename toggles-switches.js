@@ -364,11 +364,13 @@
 
 	// select all toggles & switches in provided node and initialize
 	function initialize(containerNode) {
-		var toggles = containerNode.querySelectorAll('[data-toggle]'),
-			togglesReplace = containerNode.querySelectorAll('[data-toggle-replace]'),
-			switchesOn = containerNode.querySelectorAll('[data-switch-on]'),
-			switchesOff = containerNode.querySelectorAll('[data-switch-off]'),
-			switchesReplace = containerNode.querySelectorAll('[data-switch-replace]');
+		var // use not selector to ensure initialized toggles & switches aren't touched
+			notInitialized = ':not([data-toggle-switch])',
+			toggles = containerNode.querySelectorAll('[data-toggle]'+notInitialized),
+			togglesReplace = containerNode.querySelectorAll('[data-toggle-replace]'+notInitialized),
+			switchesOn = containerNode.querySelectorAll('[data-switch-on]'+notInitialized),
+			switchesOff = containerNode.querySelectorAll('[data-switch-off]'+notInitialized),
+			switchesReplace = containerNode.querySelectorAll('[data-switch-replace]'+notInitialized);
 
 		// set up toggles & switches
 		[].forEach.call(toggles, initializers.toggles);
