@@ -144,6 +144,12 @@
         </li>
     </ol>
 
+    <h2>Watchers</h2>
+    <ol data-toggle-switch-watch class="watchers">
+        <li><a href="#" data-toggle>Toggle</a></li>
+    </ol>
+    <button class="watchers-add">Add Toggles</button>
+
     <script src="toggles-switches.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -166,6 +172,25 @@
         			console.log("Replaced!", this);
         		});
         	});
+
+            var watchersList = document.querySelector('.watchers'),
+                num = 1, i = 0, newListItem, newToggle;
+
+            document.querySelector('.watchers-add').addEventListener('click', function(e) {
+                for(i = 0; i < num; i++) {
+                    newListItem = document.createElement('li');
+                    newToggle = document.createElement('a');
+
+                    newToggle.setAttribute('href', '#');
+                    newToggle.setAttribute('data-toggle', '');
+                    newToggle.innerHTML = 'Toggle';
+
+                    newListItem.appendChild(newToggle);
+                    watchersList.appendChild(newListItem);
+                }
+
+                num++;
+            });
         });
     </script>
 </body>
