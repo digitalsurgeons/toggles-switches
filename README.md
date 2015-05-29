@@ -98,8 +98,15 @@ Here's one more using the keyup event on a text input
 		   data-switch-class="typing"
 		   data-stop-propagation />
 
+## Watchers ##
 
-## Events
+Watchers can be used to initialize dynamically appended **Toggles & Switches**. Simply specify which elements of your page should be monitored.
+
+	<div data-toggle-switch-watch>
+		<!-- Toggles & Switches dynamically appended here will be initialized  -->
+	</div>
+
+## Events ##
 
 Custom events are triggered on all **Toggles & Switches**, you can bind to these events to add extra functionality to your UI in places where JavaScript needs to take over. All events are namspaced as ToggleSwitch, full list of events below. It's important to remember that these events are toggled on the toggle or switch itself and not the target element.
 
@@ -187,8 +194,11 @@ Add one class and remove another from an element.
 
 ## Browser Support ##
 
-**Toggles & Switches** supports all major browsers including IE 11/10. For IE9 support you will need to include a ClassList polyfill such as the one found in [Remy Sharp's HTML5 Polyfills project](https://github.com/remy/polyfills). Once classList is polyfilled, **Toggles & Switches** will run as expected in IE9.
+**Toggles & Switches** supports all major browsers including IE11.
 
+For IE10 support you will need to include a MutationObserver polyfill such as the one found in the [Polymer project](https://github.com/webcomponents/webcomponentsjs).
+
+For IE9 support you will need to include a ClassList polyfill such as the one found in Remy Sharp's [HTML5 Polyfills project](https://github.com/remy/polyfills).
 
 **MIT License (MIT)**
 
