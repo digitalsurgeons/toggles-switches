@@ -144,11 +144,17 @@
         </li>
     </ol>
 
-    <h2>Watchers</h2>
-    <ol data-toggle-switch-watch class="watchers">
+    <h2>Toggle Watchers</h2>
+    <ol data-toggle-switch-watch class="toggle-watchers">
         <li><a href="#" data-toggle>Toggle</a></li>
     </ol>
-    <button class="watchers-add">Add Toggles</button>
+    <button class="add-toggle">Add Toggles</button>
+
+    <h2>Switch Watchers</h2>
+    <ol data-toggle-switch-watch class="switch-watchers">
+        <li><a href="#" data-switch>Switch</a></li>
+    </ol>
+    <button class="add-switch">Add Toggles</button>
 
     <script src="toggles-switches.js"></script>
     <script>
@@ -173,24 +179,56 @@
         		});
         	});
 
-            var watchersList = document.querySelector('.watchers'),
-                num = 1, i = 0, newListItem, newToggle;
+            var toggleWatchers = {
+                btn: document.querySelector('.add-toggle'),
+                list: document.querySelector('.toggle-watchers'),
+                num: 1,
+                i: 0,
+                newListItem: null,
+                newItem: null
+            };
 
-            document.querySelector('.watchers-add').addEventListener('click', function(e) {
-                for(i = 0; i < num; i++) {
-                    newListItem = document.createElement('li');
-                    newToggle = document.createElement('a');
+            toggleWatchers.btn.addEventListener('click', function(e) {
+                for(toggleWatchers.i = 0; toggleWatchers.i < toggleWatchers.num; toggleWatchers.i++) {
+                    toggleWatchers.newListItem = document.createElement('li');
+                    toggleWatchers.newItem = document.createElement('a');
 
-                    newToggle.setAttribute('href', '#');
-                    newToggle.setAttribute('data-toggle', '');
-                    newToggle.innerHTML = 'Toggle';
+                    toggleWatchers.newItem.setAttribute('href', '#');
+                    toggleWatchers.newItem.setAttribute('data-toggle', '');
+                    toggleWatchers.newItem.innerHTML = 'Toggle';
 
-                    newListItem.appendChild(newToggle);
-                    watchersList.appendChild(newListItem);
+                    toggleWatchers.newListItem.appendChild(toggleWatchers.newItem);
+                    toggleWatchers.list.appendChild(toggleWatchers.newListItem);
                 }
 
-                num++;
+                toggleWatchers.num++;
             });
+
+            var switchWatchers = {
+                btn: document.querySelector('.add-switch'),
+                list: document.querySelector('.switch-watchers'),
+                num: 1,
+                i: 0,
+                newListItem: null,
+                newItem: null
+            };
+
+            switchWatchers.btn.addEventListener('click', function(e) {
+                for(switchWatchers.i = 0; switchWatchers.i < switchWatchers.num; switchWatchers.i++) {
+                    switchWatchers.newListItem = document.createElement('li');
+                    switchWatchers.newItem = document.createElement('a');
+
+                    switchWatchers.newItem.setAttribute('href', '#');
+                    switchWatchers.newItem.setAttribute('data-switch', '');
+                    switchWatchers.newItem.innerHTML = 'Switch';
+
+                    switchWatchers.newListItem.appendChild(switchWatchers.newItem);
+                    switchWatchers.list.appendChild(switchWatchers.newListItem);
+                }
+
+                switchWatchers.num++;
+            });
+
         });
     </script>
 </body>

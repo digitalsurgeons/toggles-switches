@@ -233,7 +233,8 @@
 		togglesReplace = document.querySelectorAll('[data-toggle-replace]'),
 		switchesOn = document.querySelectorAll('[data-switch-on]'),
 		switchesOff = document.querySelectorAll('[data-switch-off]'),
-		switchesReplace = document.querySelectorAll('[data-switch-replace]');
+		switchesReplace = document.querySelectorAll('[data-switch-replace]'),
+		watchers = document.querySelectorAll('[data-toggle-switch-watch]');
 
 	// set up toggles
 	[].forEach.call(toggles, function(t) {
@@ -365,6 +366,17 @@
 		}
 
 		new Switch(opts);
+	});
+
+	// create mutation observers for watchers
+	[].forEach.call(watchers, function(w) {
+		var observer = new MutationObserver(function(mutations) {
+			console.log("Mutation!");
+		});
+
+		observer.observe(w, {
+			childList: true
+		});
 	});
 
 })();
