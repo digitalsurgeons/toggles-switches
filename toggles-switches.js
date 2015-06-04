@@ -326,6 +326,10 @@
 				opts.event = s.getAttribute('data-switch-event');
 			}
 
+			if(s.hasAttribute('data-switch-on-event')) {
+				opts.onEvent = s.getAttribute('data-switch-on-event');
+			}
+
 			if(s.hasAttribute('data-switch-self')) {
 				opts.self = true;
 			}
@@ -352,6 +356,10 @@
 
 			if(s.hasAttribute('data-switch-event')) {
 				opts.event = s.getAttribute('data-switch-event');
+			}
+
+			if(s.hasAttribute('data-switch-off-event')) {
+				opts.offEvent = s.getAttribute('data-switch-off-event');
 			}
 
 			if(s.hasAttribute('data-switch-self')) {
