@@ -207,7 +207,7 @@
 		events.forEach(function(event) {
 			_bindEventListener.apply(this, [event]);
 		}.bind(this));
-	});
+	};
 
 	// toggle specific replace class logic
 	Toggle.prototype.replaceClass = function() {
