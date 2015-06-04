@@ -138,7 +138,7 @@ Toggle a class on a given selector.
 | ------------------------------ | ------------------------------------------------------
 | **data-toggle**                | Initialize a toggle and specify the target selector, leave empty to target the element itself.
 | data-toggle-class              | The class that should be toggled, default 'active'
-| data-toggle-event              | The event the class should be toggled on
+| data-toggle-event              | The event on which the class should be toggled
 | data-toggle-self               | If set the class will also be applied to the element itself
 | data-toggle-stop-propagation   | Call e.stopPropagation() after user interaction
 
@@ -151,7 +151,7 @@ Toggle between two classes on a given selector.
 | **data-toggle-replace**        | Initialize a replacer toggle and specify the target selector, leave empty to target the element itself.
 | data-toggle-add                | The class to be added first, default 'active'
 | data-toggle-remove             | The class to be removed first, default 'inactive'
-| data-toggle-event              | The event the class should be toggled on
+| data-toggle-event              | The event on which the class should be toggled
 | data-toggle-self               | If set the class will also be applied to the element itself
 | data-toggle-stop-propagation   | Call e.stopPropagation() after user interaction
 
@@ -163,7 +163,8 @@ Add a class to a given selector.
 | ------------------------------ | ------------------------------------------------------
 | **data-switch-on**             | Initialize an on switch and specify the target selector, leave empty to target the element itself.
 | data-switch-class              | The class to be added, default 'active'
-| data-switch-event              | The event the class should be switched on
+| data-switch-event              | The event on which the class should be switched (this will apply to both on/off switches on the same element)
+| data-switch-on-event           | The event on which the class should be switched on
 | data-switch-self               | If set the class will also be applied to the element itself
 | data-switch-stop-propagation   | Call e.stopPropagation() after user interaction
 
@@ -175,7 +176,8 @@ Remove a class from a given selector.
 | ------------------------------ | ------------------------------------------------------
 | **data-switch-off**            | Initialize an off switch and specify the target selector, leave empty to target the element itself.
 | data-switch-class              | The class to be removed, default 'active'
-| data-switch-event              | The event the class should be switched on
+| data-switch-event              | The event on which the class should be switched (this will apply to both on/off switches on the same element)
+| data-switch-off-event           | The event on which the class should be switched off
 | data-switch-self               | If set the class will also be applied to the element itself
 | data-switch-stop-propagation   | Call e.stopPropagation() after user interaction
 
@@ -188,7 +190,7 @@ Add one class and remove another from an element.
 | **data-switch-replace**        | Initialize a replacer switch and specify the target selector, leave empty to target the element itself.
 | data-switch-add                | The class to be added, default 'active'
 | data-switch-remove             | The class to be removed, default 'inactive'
-| data-switch-event              | The event the class should be switched on
+| data-switch-event              | The event on which the class should be switched
 | data-switch-self               | If set the class will also be applied to the element itself
 | data-switch-stop-propagation   | Call e.stopPropagation() after user interaction
 
