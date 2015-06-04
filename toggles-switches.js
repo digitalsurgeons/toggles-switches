@@ -18,6 +18,8 @@
 		this.element = opts.element;
 		this.target = opts.target;
 		this.event = opts.event || 'click';
+		this.onEvent = opts.onEvent || 'click';
+		this.offEvent = opts.offEvent || 'click';
 		this.className = opts.class || 'active';
 		this.add = opts.add || 'active';
 		this.remove = opts.remove || 'inactive';
