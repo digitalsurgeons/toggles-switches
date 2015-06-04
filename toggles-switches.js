@@ -18,6 +18,8 @@
 		this.element = opts.element;
 		this.target = opts.target;
 		this.event = opts.event || 'click';
+		this.onEvent = opts.onEvent || false;
+		this.offEvent = opts.offEvent || false;
 		this.className = opts.class || 'active';
 		this.add = opts.add || 'active';
 		this.remove = opts.remove || 'inactive';
@@ -28,11 +30,14 @@
 		// if target is empty default to element itself
 		this.target = this.target ? document.querySelectorAll(this.target) : [this.element];
 
+		// mark this element as initialised
+		this.element.setAttribute('data-toggle-switch', 'switch');
+
 		// set up switch custom events
 		_createCustomEvents.apply(this);
 
 		// set up switch event listeners
-		_bindEventListeners.apply(this);
+		this.bindEventListeners();
 	}
 
 	// toggle constructor
@@ -52,11 +57,14 @@
 		// if target is empty default to element itself
 		this.target = this.target ? document.querySelectorAll(this.target) : [this.element];
 
+		// mark this element as initialised
+		this.element.setAttribute('data-toggle-switch', 'toggle');
+
 		// set up toggle custom events
 		_createCustomEvents.apply(this);
 
 		// set up toggle event listeners
-		_bindEventListeners.apply(this);
+		this.bindEventListeners();
 	}
 
 	// initialize custom events
@@ -92,16 +100,6 @@
 
 		// trigger event
 		this.element.dispatchEvent(evt);
-	}
-
-	// set up single or multiple event listeners
-	function _bindEventListeners() {
-		var events = this.event.split(',');
-
-		// will be array of length 1 if single event
-		events.forEach(function(event) {
-			_bindEventListener.apply(this, [event]);
-		}.bind(this));
 	}
 
 	// bind a single event listener
@@ -168,12 +166,46 @@
 		}
 	}
 
+	Switch.prototype.bindEventListeners = function() {
+
+		var events;
+
+		// custom on switch events
+		if(this.type === 'on' && this.onEvent) {
+
+			events = this.onEvent.split(',');
+
+		// custom off switch events
+		} else if(this.type === 'off' && this.offEvent) {
+
+			events = this.offEvent.split(',');
+
+		// shared on/off events
+		} else {
+			events = this.event.split(',');
+		}
+
+		// will be array of length 1 if single event
+		events.forEach(function(event) {
+			_bindEventListener.apply(this, [event]);
+		}.bind(this));
+	};
+
 	// switch specific replace class logic
 	Switch.prototype.replaceClass = function() {
 		[].forEach.call(this.target, function(el) {
 			el.classList.remove(this.remove);
 			el.classList.add(this.add);
 			_triggerEvent.apply(this, ['replaced']);
+		}.bind(this));
+	};
+
+	Toggle.prototype.bindEventListeners = function() {
+		var events = this.event.split(',');
+
+		// will be array of length 1 if single event
+		events.forEach(function(event) {
+			_bindEventListener.apply(this, [event]);
 		}.bind(this));
 	};
 
@@ -226,145 +258,182 @@
 		}
 	};
 
-	/**
-	* Data-Attr API
-	*/
-	var toggles = document.querySelectorAll('[data-toggle]'),
-		togglesReplace = document.querySelectorAll('[data-toggle-replace]'),
-		switchesOn = document.querySelectorAll('[data-switch-on]'),
-		switchesOff = document.querySelectorAll('[data-switch-off]'),
-		switchesReplace = document.querySelectorAll('[data-switch-replace]');
+	// data attr API initializers
+	var initializers = {
+		toggles: function(t) {
+			// required params
+			var opts = {
+				element: t,
+				target: t.getAttribute('data-toggle')
+			};
 
-	// set up toggles
-	[].forEach.call(toggles, function(t) {
-		// required params
-		var opts = {
-			element: t,
-			target: t.getAttribute('data-toggle')
-		};
+			// optional params
+			if(t.hasAttribute('data-toggle-class')) {
+				opts.class = t.getAttribute('data-toggle-class');
+			}
 
-		// optional params
-		if(t.hasAttribute('data-toggle-class')) {
-			opts.class = t.getAttribute('data-toggle-class');
+			if(t.hasAttribute('data-toggle-event')) {
+				opts.event = t.getAttribute('data-toggle-event');
+			}
+
+			if(t.hasAttribute('data-toggle-self')) {
+				opts.self = true;
+			}
+
+			if(t.hasAttribute('data-toggle-stop-propagation')) {
+				opts.stopPropagation = true;
+			}
+
+			new Toggle(opts);
+		},
+
+		togglesReplace: function(t) {
+			// required params
+			var opts = {
+				type: 'replace',
+				element: t,
+				target: t.getAttribute('data-toggle-replace'),
+				add: t.getAttribute('data-toggle-add'),
+				remove: t.getAttribute('data-toggle-remove')
+			};
+
+			// optional params
+			if(t.hasAttribute('data-toggle-stop-propagation')) {
+				opts.stopPropagation = true;
+			}
+
+			if(t.hasAttribute('data-toggle-event')) {
+				opts.event = t.getAttribute('data-toggle-event');
+			}
+
+			new Toggle(opts);
+		},
+
+		switchesOn: function(s) {
+			// required params
+			var opts = {
+				type: 'on',
+				element: s,
+				target: s.getAttribute('data-switch-on')
+			};
+
+			// optional params
+			if(s.hasAttribute('data-switch-class')) {
+				opts.class = s.getAttribute('data-switch-class');
+			}
+
+			if(s.hasAttribute('data-switch-event')) {
+				opts.event = s.getAttribute('data-switch-event');
+			}
+
+			if(s.hasAttribute('data-switch-on-event')) {
+				opts.onEvent = s.getAttribute('data-switch-on-event');
+			}
+
+			if(s.hasAttribute('data-switch-self')) {
+				opts.self = true;
+			}
+
+			if(s.hasAttribute('data-switch-stop-propagation')) {
+				opts.stopPropagation = true;
+			}
+
+			new Switch(opts);
+		},
+
+		switchesOff: function(s) {
+			// required params
+			var opts = {
+				type: 'off',
+				element: s,
+				target: s.getAttribute('data-switch-off')
+			};
+
+			// optional params
+			if(s.hasAttribute('data-switch-class')) {
+				opts.class = s.getAttribute('data-switch-class');
+			}
+
+			if(s.hasAttribute('data-switch-event')) {
+				opts.event = s.getAttribute('data-switch-event');
+			}
+
+			if(s.hasAttribute('data-switch-off-event')) {
+				opts.offEvent = s.getAttribute('data-switch-off-event');
+			}
+
+			if(s.hasAttribute('data-switch-self')) {
+				opts.self = true;
+			}
+
+			if(s.hasAttribute('data-switch-stop-propagation')) {
+				opts.stopPropagation = true;
+			}
+
+			new Switch(opts);
+		},
+
+		switchesReplace: function(s) {
+			// required params
+			var opts = {
+				type: 'replace',
+				element: s,
+				target: s.getAttribute('data-switch-replace'),
+				add: s.getAttribute('data-switch-add'),
+				remove: s.getAttribute('data-switch-remove')
+			};
+
+			// optional params
+			if(s.hasAttribute('data-switch-stop-propagation')) {
+				opts.stopPropagation = true;
+			}
+
+			if(s.hasAttribute('data-switch-event')) {
+				opts.event = s.getAttribute('data-switch-event');
+			}
+
+			new Switch(opts);
+		}
+	};
+
+	// select all toggles & switches in provided node and initialize
+	function initialize(containerNode) {
+		var // use not selector to ensure initialized toggles & switches aren't touched
+			notInitialized = ':not([data-toggle-switch])',
+			toggles = containerNode.querySelectorAll('[data-toggle]'+notInitialized),
+			togglesReplace = containerNode.querySelectorAll('[data-toggle-replace]'+notInitialized),
+			switchesOn = containerNode.querySelectorAll('[data-switch-on]'+notInitialized),
+			switchesOff = containerNode.querySelectorAll('[data-switch-off]'+notInitialized),
+			switchesReplace = containerNode.querySelectorAll('[data-switch-replace]'+notInitialized);
+
+		// set up toggles & switches
+		[].forEach.call(toggles, initializers.toggles);
+		[].forEach.call(togglesReplace, initializers.togglesReplace);
+		[].forEach.call(switchesOn, initializers.switchesOn);
+		[].forEach.call(switchesOff, initializers.switchesOff);
+		[].forEach.call(switchesReplace, initializers.switchesReplace);
+	}
+
+	// create mutation observers for watchers
+	(function() {
+		// check for mutation observers before using, IE11 only
+		if(window.MutationObserver == undefined) {
+			return;
 		}
 
-		if(t.hasAttribute('data-toggle-event')) {
-			opts.event = t.getAttribute('data-toggle-event');
-		}
+		[].forEach.call(document.querySelectorAll('[data-toggle-switch-watch]'), function(w) {
+			var observer = new MutationObserver(function(mutations) {
+				// target will match between all mutations so just use first
+				initialize(mutations[0].target);
+			});
 
-		if(t.hasAttribute('data-toggle-self')) {
-			opts.self = true;
-		}
+			observer.observe(w, {
+				childList: true
+			});
+		});
+	})();
 
-		if(t.hasAttribute('data-toggle-stop-propagation')) {
-			opts.stopPropagation = true;
-		}
-
-		new Toggle(opts);
-	});
-
-	// set up replace toggles
-	[].forEach.call(togglesReplace, function(t) {
-		// required params
-		var opts = {
-			type: 'replace',
-			element: t,
-			target: t.getAttribute('data-toggle-replace'),
-			add: t.getAttribute('data-toggle-add'),
-			remove: t.getAttribute('data-toggle-remove')
-		};
-
-		// optional params
-		if(t.hasAttribute('data-toggle-stop-propagation')) {
-			opts.stopPropagation = true;
-		}
-
-		if(t.hasAttribute('data-toggle-event')) {
-			opts.event = t.getAttribute('data-toggle-event');
-		}
-
-		new Toggle(opts);
-	});
-
-	// set up on switches
-	[].forEach.call(switchesOn, function(s) {
-		// required params
-		var opts = {
-			type: 'on',
-			element: s,
-			target: s.getAttribute('data-switch-on')
-		};
-
-		// optional params
-		if(s.hasAttribute('data-switch-class')) {
-			opts.class = s.getAttribute('data-switch-class');
-		}
-
-		if(s.hasAttribute('data-switch-event')) {
-			opts.event = s.getAttribute('data-switch-event');
-		}
-
-		if(s.hasAttribute('data-switch-self')) {
-			opts.self = true;
-		}
-
-		if(s.hasAttribute('data-switch-stop-propagation')) {
-			opts.stopPropagation = true;
-		}
-
-		new Switch(opts);
-	});
-
-	// set up off switches
-	[].forEach.call(switchesOff, function(s) {
-		// required params
-		var opts = {
-			type: 'off',
-			element: s,
-			target: s.getAttribute('data-switch-off')
-		};
-
-		// optional params
-		if(s.hasAttribute('data-switch-class')) {
-			opts.class = s.getAttribute('data-switch-class');
-		}
-
-		if(s.hasAttribute('data-switch-event')) {
-			opts.event = s.getAttribute('data-switch-event');
-		}
-
-		if(s.hasAttribute('data-switch-self')) {
-			opts.self = true;
-		}
-
-		if(s.hasAttribute('data-switch-stop-propagation')) {
-			opts.stopPropagation = true;
-		}
-
-		new Switch(opts);
-	});
-
-	// set up replace switches
-	[].forEach.call(switchesReplace, function(s) {
-		// required params
-		var opts = {
-			type: 'replace',
-			element: s,
-			target: s.getAttribute('data-switch-replace'),
-			add: s.getAttribute('data-switch-add'),
-			remove: s.getAttribute('data-switch-remove')
-		};
-
-		// optional params
-		if(s.hasAttribute('data-switch-stop-propagation')) {
-			opts.stopPropagation = true;
-		}
-
-		if(s.hasAttribute('data-switch-event')) {
-			opts.event = s.getAttribute('data-switch-event');
-		}
-
-		new Switch(opts);
-	});
+	// initialize toggles & switches in entire document
+	initialize(document);
 
 })();
