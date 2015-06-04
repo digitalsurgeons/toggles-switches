@@ -108,8 +108,13 @@
             <a href="#" data-switch-off="body" data-switch-event="mouseout" class="active">Mouseout</a>
         </li>
         <li>
+            <p><strong>Add .active on focus and remove .active on blur</strong></p>
+            <pre><code>data-switch-on data-switch-on-event="focus" data-switch-off data-switch-off-event="blur"</code></pre>
+            <input type="text" value="Focus/blur" data-switch-on data-switch-on-event="focus" data-switch-off data-switch-off-event="blur" /></a>
+        </li>
+        <li>
             <p><strong>Add .active to body on mouseover and remove .active from self on mouseout</strong></p>
-            <pre><code>data-switch-on="body" data-switch-event="mouseover" data-switch-off="body" data-switch-event="mouseout"</code></pre>
+            <pre><code>data-switch-on="body" data-switch-on-event="mouseover" data-switch-off data-switch-off-event="mouseout"</code></pre>
             <a href="#" data-switch-on="body" data-switch-on-event="mouseover" data-switch-off data-switch-off-event="mouseout" class="active">Mouseover</a>
         </li>
         <li>
