@@ -18,6 +18,8 @@
 		this.element = opts.element;
 		this.target = opts.target;
 		this.event = opts.event || 'click';
+		this.onEvent = opts.onEvent || false;
+		this.offEvent = opts.offEvent || false;
 		this.className = opts.class || 'active';
 		this.add = opts.add || 'active';
 		this.remove = opts.remove || 'inactive';
@@ -35,7 +37,7 @@
 		_createCustomEvents.apply(this);
 
 		// set up switch event listeners
-		_bindEventListeners.apply(this);
+		this.bindEventListeners();
 	}
 
 	// toggle constructor
@@ -62,7 +64,7 @@
 		_createCustomEvents.apply(this);
 
 		// set up toggle event listeners
-		_bindEventListeners.apply(this);
+		this.bindEventListeners();
 	}
 
 	// initialize custom events
@@ -98,16 +100,6 @@
 
 		// trigger event
 		this.element.dispatchEvent(evt);
-	}
-
-	// set up single or multiple event listeners
-	function _bindEventListeners() {
-		var events = this.event.split(',');
-
-		// will be array of length 1 if single event
-		events.forEach(function(event) {
-			_bindEventListener.apply(this, [event]);
-		}.bind(this));
 	}
 
 	// bind a single event listener
@@ -174,12 +166,46 @@
 		}
 	}
 
+	Switch.prototype.bindEventListeners = function() {
+
+		var events;
+
+		// custom on switch events
+		if(this.type === 'on' && this.onEvent) {
+
+			events = this.onEvent.split(',');
+
+		// custom off switch events
+		} else if(this.type === 'off' && this.offEvent) {
+
+			events = this.offEvent.split(',');
+
+		// shared on/off events
+		} else {
+			events = this.event.split(',');
+		}
+
+		// will be array of length 1 if single event
+		events.forEach(function(event) {
+			_bindEventListener.apply(this, [event]);
+		}.bind(this));
+	};
+
 	// switch specific replace class logic
 	Switch.prototype.replaceClass = function() {
 		[].forEach.call(this.target, function(el) {
 			el.classList.remove(this.remove);
 			el.classList.add(this.add);
 			_triggerEvent.apply(this, ['replaced']);
+		}.bind(this));
+	};
+
+	Toggle.prototype.bindEventListeners = function() {
+		var events = this.event.split(',');
+
+		// will be array of length 1 if single event
+		events.forEach(function(event) {
+			_bindEventListener.apply(this, [event]);
 		}.bind(this));
 	};
 
@@ -300,6 +326,10 @@
 				opts.event = s.getAttribute('data-switch-event');
 			}
 
+			if(s.hasAttribute('data-switch-on-event')) {
+				opts.onEvent = s.getAttribute('data-switch-on-event');
+			}
+
 			if(s.hasAttribute('data-switch-self')) {
 				opts.self = true;
 			}
@@ -326,6 +356,10 @@
 
 			if(s.hasAttribute('data-switch-event')) {
 				opts.event = s.getAttribute('data-switch-event');
+			}
+
+			if(s.hasAttribute('data-switch-off-event')) {
+				opts.offEvent = s.getAttribute('data-switch-off-event');
 			}
 
 			if(s.hasAttribute('data-switch-self')) {
