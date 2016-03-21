@@ -135,7 +135,98 @@ module.exports = function(Toggle, Switch) {
 			}
 
 			new Switch(opts);
+		},
+
+		switchesOnGroup: (s) => {
+			let opts = {
+				type: 'on',
+				element: s,
+				target: s.getAttribute('data-switch-on-group')
+			};
+
+			// optional params
+			if (s.hasAttribute('data-switch-class')) {
+				opts.class = s.getAttribute('data-switch-class');
+			}
+
+			if (s.hasAttribute('data-switch-event')) {
+				opts.event = s.getAttribute('data-switch-event');
+			}
+
+			if (s.hasAttribute('data-switch-on-event')) {
+				opts.onEvent = s.getAttribute('data-switch-on-event');
+			}
+
+			if (s.hasAttribute('data-switch-self')) {
+				opts.self = true;
+			}
+
+			if (s.hasAttribute('data-switch-stop-propagation')) {
+				opts.stopPropagation = true;
+			}
+
+			new Switch(opts);
+		},
+
+		switchesOffGroup: (s) => {
+			// required params
+			let opts = {
+				type: 'off',
+				element: s,
+				target: s.getAttribute('data-switch-off-group')
+			};
+
+			// optional params
+			if (s.hasAttribute('data-switch-class')) {
+				opts.class = s.getAttribute('data-switch-class');
+			}
+
+			if (s.hasAttribute('data-switch-event')) {
+				opts.event = s.getAttribute('data-switch-event');
+			}
+
+			if (s.hasAttribute('data-switch-off-event')) {
+				opts.offEvent = s.getAttribute('data-switch-off-event');
+			}
+
+			if (s.hasAttribute('data-switch-self')) {
+				opts.self = true;
+			}
+
+			if (s.hasAttribute('data-switch-stop-propagation')) {
+				opts.stopPropagation = true;
+			}
+
+			new Switch(opts);
+		},
+
+		toggleGroup: (t) => {
+			// required params
+			let opts = {
+				element: t,
+				target: t.getAttribute('data-toggle-group')
+			};
+
+			// optional params
+			if (t.hasAttribute('data-toggle-class')) {
+				opts.class = t.getAttribute('data-toggle-class');
+			}
+
+			if (t.hasAttribute('data-toggle-event')) {
+				opts.event = t.getAttribute('data-toggle-event');
+			}
+
+			if (t.hasAttribute('data-toggle-self')) {
+				opts.self = true;
+			}
+
+			if (t.hasAttribute('data-toggle-stop-propagation')) {
+				opts.stopPropagation = true;
+			}
+
+			new Toggle(opts);
 		}
+
 	};
 
 	// select all toggles & switches in provided node and initialize
@@ -146,7 +237,10 @@ module.exports = function(Toggle, Switch) {
 			togglesReplace = containerNode.querySelectorAll('[data-toggle-replace]' + notInitialized),
 			switchesOn = containerNode.querySelectorAll('[data-switch-on]' + notInitialized),
 			switchesOff = containerNode.querySelectorAll('[data-switch-off]' + notInitialized),
-			switchesReplace = containerNode.querySelectorAll('[data-switch-replace]' + notInitialized);
+			switchesReplace = containerNode.querySelectorAll('[data-switch-replace]' + notInitialized),
+			switchesOnGroup = containerNode.querySelectorAll('[data-switch-on-group]' + notInitialized),
+			switchesOffGroup = containerNode.querySelectorAll('[data-switch-off-group]' + notInitialized),
+			switchesToggleGroup = containerNode.querySelectorAll('[data-toggle-group]' + notInitialized);
 
 		// set up toggles & switches
 		[].forEach.call(toggles, initializers.toggles);
@@ -154,6 +248,9 @@ module.exports = function(Toggle, Switch) {
 		[].forEach.call(switchesOn, initializers.switchesOn);
 		[].forEach.call(switchesOff, initializers.switchesOff);
 		[].forEach.call(switchesReplace, initializers.switchesReplace);
+		[].forEach.call(switchesOnGroup, initializers.switchesOnGroup);
+		[].forEach.call(switchesOffGroup, initializers.switchesOffGroup);
+		[].forEach.call(switchesToggleGroup, initializers.switchesToggleGroup);
 	}
 
 	// create mutation observers for watchers
