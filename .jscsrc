@@ -1,0 +1,26 @@
+{
+    "preset": "airbnb",
+    "fileExtensions": [ ".js", "jscs" ],
+
+    "requireParenthesesAroundIIFE": true,
+    "maximumLineLength": 200,
+    "validateLineBreaks": "LF",
+    "validateIndentation": "\t",
+
+    "disallowKeywords": ["with"],
+    "disallowSpacesInsideObjectBrackets": null,
+    "disallowImplicitTypeConversion": ["string"],
+
+    "safeContextKeyword": "_this",
+
+    "disallowMultipleVarDecl": null,
+
+    "requireTrailingComma": null,
+
+    "disallowQuotedKeysInObjects": null,
+
+    "requireCamelCaseOrUpperCaseIdentifiers": null,
+
+	"requireSpacesInAnonymousFunctionExpression": null
+
+}
