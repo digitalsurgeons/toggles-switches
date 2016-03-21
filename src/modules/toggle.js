@@ -128,3 +128,10 @@ module.exports = class Toggle {
 		}
 	}
 };
+
+function checkBrakcet (str) {
+  if (str.startsWith('[') && str.endsWith(']')) {
+    return str.slice(1, str.length - 1).split(',')
+  }
+}
+ 
