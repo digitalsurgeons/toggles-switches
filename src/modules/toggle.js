@@ -2,8 +2,8 @@ module.exports = class Toggle {
 	constructor(opts) {
 		this.type = opts.type;
 		this.element = opts.element;
-		this.target = opts.target;
-		this.className = opts.class || 'active';
+		this.target = this.checkIsArray(opts.target);
+		this.className = this.checkIsArray(opts.class) || 'active';
 		this.add = opts.add || 'active';
 		this.remove = opts.remove || 'inactive';
 		this.event = opts.event || 'click';
@@ -14,7 +14,15 @@ module.exports = class Toggle {
 		// if target is empty default to element itself
 		// TODO: check if first and last chars are brackets
 		// if so create an array with each node
-		this.target = this.target ? document.querySelectorAll(this.target) : [this.element];
+		if (Array.isArray(this.target)) {
+			// loop through and create nodes
+			this.target.forEach(function(el, index) {
+				this.target[index] = document.querySelector(el);
+			});
+
+		} else {
+			this.target = this.target ? document.querySelectorAll(this.target) : [this.element];
+		}
 
 		// mark this element as initialised
 		this.element.setAttribute('data-toggle-switch', 'toggle');
