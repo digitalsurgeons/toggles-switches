@@ -1,9 +1,10 @@
 {
   "name": "toggles-switches",
-  "version": "1.3.1",
-  "main": "toggles-switches.js",
-  "ignore": [
-    ".gitignore",
-    ".git"
-  ]
+  "version": "0.7.2",
+  "authors": [
+      "Digital Surgeons",
+      "Adam Chambers"
+  ],
+  "main": "dist/toggles-switches.js",
+  "license": "MIT"
 }
