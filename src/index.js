@@ -11,36 +11,6 @@
 
 	'use strict';
 
-	// switch constructor
-	class Switch {
-		constructor(opts) {
-			this.type = opts.type;
-			this.element = opts.element;
-			this.target = opts.target;
-			this.event = opts.event || 'click';
-			this.onEvent = opts.onEvent || false;
-			this.offEvent = opts.offEvent || false;
-			this.className = opts.class || 'active';
-			this.add = opts.add || 'active';
-			this.remove = opts.remove || 'inactive';
-			this.self = opts.self || false;
-			this.stopPropagation = opts.stopPropagation || false;
-			this.events = {};
-
-			// if target is empty default to element itself
-			this.target = this.target ? document.querySelectorAll(this.target) : [this.element];
-
-			// mark this element as initialised
-			this.element.setAttribute('data-toggle-switch', 'switch');
-
-			// set up switch custom events
-			_createCustomEvents.apply(this);
-
-			// set up switch event listeners
-			this.bindEventListeners();
-		}
-	}
-
 	// toggle constructor
 	class Toggle {
 		constructor(opts) {
@@ -62,209 +32,220 @@
 			this.element.setAttribute('data-toggle-switch', 'toggle');
 
 			// set up toggle custom events
-			_createCustomEvents.apply(this);
+			this._createCustomEvents.apply(this);
 
 			// set up toggle event listeners
 			this.bindEventListeners();
 		}
-	}
 
-	// initialize custom events
-	// spotty support for CustomEvent :/
-	function _createCustomEvents() {
-		// create 4 types of event
-		this.events = {
-			'toggled': document.createEvent('Event'),
-			'added': document.createEvent('Event'),
-			'removed': document.createEvent('Event'),
-			'replaced': document.createEvent('Event')
-		};
+		// initialize custom events
+		// spotty support for CustomEvent :/
+		_createCustomEvents() {
+			// create 4 types of event
+			this.events = {
+				'toggled': document.createEvent('Event'),
+				'added': document.createEvent('Event'),
+				'removed': document.createEvent('Event'),
+				'replaced': document.createEvent('Event')
+			};
 
-		this.events.toggled.initEvent('ToggleSwitch.toggled', true, true);
-		this.events.added.initEvent('ToggleSwitch.added', true, true);
-		this.events.removed.initEvent('ToggleSwitch.removed', true, true);
-		this.events.replaced.initEvent('ToggleSwitch.replaced', true, true);
-	}
-
-	// cross browser event trigger
-	function _triggerEvent(event) {
-		// no event name supplied or invalid
-		// instance has no element
-		if (!event || typeof event !== 'string' || !this.element) {
-			return false;
+			this.events.toggled.initEvent('ToggleSwitch.toggled', true, true);
+			this.events.added.initEvent('ToggleSwitch.added', true, true);
+			this.events.removed.initEvent('ToggleSwitch.removed', true, true);
+			this.events.replaced.initEvent('ToggleSwitch.replaced', true, true);
 		}
 
-		// check event exists
-		var evt = this.events[event];
-		if (!evt) {
-			return false;
-		}
-
-		// trigger event
-		this.element.dispatchEvent(evt);
-	}
-
-	// bind a single event listener
-	function _bindEventListener(event) {
-		this.element.addEventListener(event, function(e) {
-			e.preventDefault();
-
-			// optional propagation halt
-			if (this.stopPropagation) {
-				e.stopPropagation();
-			}
-
-			this.fire();
-		}.bind(this));
-	}
-
-	// add class of className to target
-	function _addClass() {
-		// could be single or multiple targets
-		[].forEach.call(this.target, function(el) {
-			if (el.classList.contains(this.className)) {
+		// cross browser event trigger
+		_triggerEvent(event) {
+			// no event name supplied or invalid
+			// instance has no element
+			if (!event || typeof event !== 'string' || !this.element) {
 				return false;
 			}
 
-			el.classList.add(this.className);
-			_triggerEvent.apply(this, ['added']);
-		}.bind(this));
-
-		// optionally add class to element itself
-		if (this.self) {
-			this.element.classList.add(this.className);
-		}
-	}
-
-	// remove class of className from target
-	function _removeClass() {
-		// could be single or multiple targets
-		[].forEach.call(this.target, function(el) {
-			if (!el.classList.contains(this.className)) {
+			// check event exists
+			let evt = this.events[event];
+			if (!evt) {
 				return false;
 			}
 
-			el.classList.remove(this.className);
-			_triggerEvent.apply(this, ['removed']);
-		}.bind(this));
+			// trigger event
+			this.element.dispatchEvent(evt);
+		}
 
-		// optionally add class to element itself
-		if (this.self) {
-			this.element.classList.remove(this.className);
+		bindEventListeners() {
+			let events = this.event.split(',');
+
+			// will be array of length 1 if single event
+			events.forEach(function(event) {
+				this._bindEventListener.apply(this, [event]);
+			}.bind(this));
+		}
+
+		// bind a single event listener
+		_bindEventListener(event) {
+			this.element.addEventListener(event, function(e) {
+				e.preventDefault();
+
+				// optional propagation halt
+				if (this.stopPropagation) {
+					e.stopPropagation();
+				}
+
+				this.fire();
+			}.bind(this));
+		}
+
+		// fire toggle
+		fire() {
+			if (this.type === 'replace') {
+				this.replaceClass();
+			} else {
+				this._toggleClass.apply(this);
+			}
+		}
+
+		// toggle specific replace class logic
+		replaceClass() {
+			[].forEach.call(this.target, function(el) {
+				// element contains neither class
+				// or element contains class that should be removed
+				if ((!el.classList.contains(this.remove) && !el.classList.contains(this.add)) ||
+					el.classList.contains(this.remove)) {
+
+					el.classList.remove(this.remove);
+					el.classList.add(this.add);
+
+				// element contains that was added so reverse logic
+				} else if (el.classList.contains(this.add)) {
+					el.classList.add(this.remove);
+					el.classList.remove(this.add);
+				}
+
+				this._triggerEvent.apply(this, ['replaced']);
+			}.bind(this));
+		}
+
+		// add class of className to target
+		_addClass() {
+			// could be single or multiple targets
+			[].forEach.call(this.target, function(el) {
+				if (el.classList.contains(this.className)) {
+					return false;
+				}
+
+				el.classList.add(this.className);
+				this._triggerEvent.apply(this, ['added']);
+			}.bind(this));
+
+			// optionally add class to element itself
+			if (this.self) {
+				this.element.classList.add(this.className);
+			}
+		}
+
+		// remove class of className from target
+		_removeClass() {
+			// could be single or multiple targets
+			[].forEach.call(this.target, function(el) {
+				if (!el.classList.contains(this.className)) {
+					return false;
+				}
+
+				el.classList.remove(this.className);
+				this._triggerEvent.apply(this, ['removed']);
+			}.bind(this));
+
+			// optionally add class to element itself
+			if (this.self) {
+				this.element.classList.remove(this.className);
+			}
+		}
+
+		// toggle class of className on target
+		_toggleClass() {
+			// could be single or multiple targets
+			[].forEach.call(this.target, function(el) {
+				el.classList.toggle(this.className);
+				this._triggerEvent.apply(this, ['toggled']);
+			}.bind(this));
+
+			// optionally add class to element itself
+			if (this.self) {
+				this.element.classList.toggle(this.className);
+			}
 		}
 	}
 
-	// toggle class of className on target
-	function _toggleClass() {
-		// could be single or multiple targets
-		[].forEach.call(this.target, function(el) {
-			el.classList.toggle(this.className);
-			_triggerEvent.apply(this, ['toggled']);
-		}.bind(this));
+	// switch constructor
+	class Switch extends Toggle {
+		constructor(opts) {
+			super(opts);
+			this.onEvent = opts.onEvent || false;
+			this.offEvent = opts.offEvent || false;
 
-		// optionally add class to element itself
-		if (this.self) {
-			this.element.classList.toggle(this.className);
-		}
-	}
-
-	Switch.prototype.bindEventListeners = function() {
-
-		var events;
-
-		// custom on switch events
-		if (this.type === 'on' && this.onEvent) {
-
-			events = this.onEvent.split(',');
-
-		// custom off switch events
-		} else if (this.type === 'off' && this.offEvent) {
-
-			events = this.offEvent.split(',');
-
-		// shared on/off events
-		} else {
-			events = this.event.split(',');
+			// mark this element as initialised
+			this.element.setAttribute('data-toggle-switch', 'switch');
 		}
 
-		// will be array of length 1 if single event
-		events.forEach(function(event) {
-			_bindEventListener.apply(this, [event]);
-		}.bind(this));
-	};
+		bindEventListeners() {
+			let events;
 
-	// switch specific replace class logic
-	Switch.prototype.replaceClass = function() {
-		[].forEach.call(this.target, function(el) {
-			el.classList.remove(this.remove);
-			el.classList.add(this.add);
-			_triggerEvent.apply(this, ['replaced']);
-		}.bind(this));
-	};
+			// custom on switch events
+			if (this.type === 'on' && this.onEvent) {
 
-	Toggle.prototype.bindEventListeners = function() {
-		var events = this.event.split(',');
+				events = this.onEvent.split(',');
 
-		// will be array of length 1 if single event
-		events.forEach(function(event) {
-			_bindEventListener.apply(this, [event]);
-		}.bind(this));
-	};
+			// custom off switch events
+			} else if (this.type === 'off' && this.offEvent) {
 
-	// toggle specific replace class logic
-	Toggle.prototype.replaceClass = function() {
-		[].forEach.call(this.target, function(el) {
-			// element contains neither class
-			// or element contains class that should be removed
-			if ((!el.classList.contains(this.remove) && !el.classList.contains(this.add)) ||
-				el.classList.contains(this.remove)) {
+				events = this.offEvent.split(',');
 
+			// shared on/off events
+			} else {
+				events = this.event.split(',');
+			}
+
+			// will be array of length 1 if single event
+			events.forEach(function(event) {
+				this._bindEventListener.apply(this, [event]);
+			}.bind(this));
+		}
+
+		// fire switch
+		fire() {
+			// this is a replace switch so replace
+			if (this.type === 'replace') {
+
+				this.replaceClass();
+
+			// class not applied this is an on switch so add
+			} else if (this.type === 'on') {
+
+				this._addClass.apply(this);
+
+			// class applied this is an off switch so remove
+			} else if (this.type === 'off') {
+
+				this._removeClass.apply(this);
+			}
+		}
+
+		// switch specific replace class logic
+		replaceClass() {
+			[].forEach.call(this.target, function(el) {
 				el.classList.remove(this.remove);
 				el.classList.add(this.add);
-
-			// element contains that was added so reverse logic
-			} else if (el.classList.contains(this.add)) {
-				el.classList.add(this.remove);
-				el.classList.remove(this.add);
-			}
-
-			_triggerEvent.apply(this, ['replaced']);
-		}.bind(this));
-	};
-
-	// fire switch
-	Switch.prototype.fire = function() {
-		// this is a replace switch so replace
-		if (this.type === 'replace') {
-
-			this.replaceClass();
-
-		// class not applied this is an on switch so add
-		} else if (this.type === 'on') {
-
-			_addClass.apply(this);
-
-		// class applied this is an off switch so remove
-		} else if (this.type === 'off') {
-
-			_removeClass.apply(this);
+				this._triggerEvent.apply(this, ['replaced']);
+			}.bind(this));
 		}
-	};
-
-	// fire toggle
-	Toggle.prototype.fire = function() {
-		if (this.type === 'replace') {
-			this.replaceClass();
-		} else {
-			_toggleClass.apply(this);
-		}
-	};
+	}
 
 	// data attr API initializers
 	var initializers = {
-		toggles: function(t) {
+		toggles: (t) => {
 			// required params
-			var opts = {
+			let opts = {
 				element: t,
 				target: t.getAttribute('data-toggle')
 			};
@@ -289,9 +270,9 @@
 			new Toggle(opts);
 		},
 
-		togglesReplace: function(t) {
+		togglesReplace: (t) => {
 			// required params
-			var opts = {
+			let opts = {
 				type: 'replace',
 				element: t,
 				target: t.getAttribute('data-toggle-replace'),
@@ -311,9 +292,9 @@
 			new Toggle(opts);
 		},
 
-		switchesOn: function(s) {
+		switchesOn: (s) => {
 			// required params
-			var opts = {
+			let opts = {
 				type: 'on',
 				element: s,
 				target: s.getAttribute('data-switch-on')
@@ -343,9 +324,9 @@
 			new Switch(opts);
 		},
 
-		switchesOff: function(s) {
+		switchesOff: (s) => {
 			// required params
-			var opts = {
+			let opts = {
 				type: 'off',
 				element: s,
 				target: s.getAttribute('data-switch-off')
@@ -375,9 +356,9 @@
 			new Switch(opts);
 		},
 
-		switchesReplace: function(s) {
+		switchesReplace: (s) => {
 			// required params
-			var opts = {
+			let opts = {
 				type: 'replace',
 				element: s,
 				target: s.getAttribute('data-switch-replace'),
@@ -400,7 +381,7 @@
 
 	// select all toggles & switches in provided node and initialize
 	function initialize(containerNode) {
-		var // use not selector to ensure initialized toggles & switches aren't touched
+		let // use not selector to ensure initialized toggles & switches aren't touched
 			notInitialized = ':not([data-toggle-switch])',
 			toggles = containerNode.querySelectorAll('[data-toggle]' + notInitialized),
 			togglesReplace = containerNode.querySelectorAll('[data-toggle-replace]' + notInitialized),
@@ -423,8 +404,8 @@
 			return;
 		}
 
-		[].forEach.call(document.querySelectorAll('[data-toggle-switch-watch]'), function(w) {
-			var observer = new MutationObserver(function(mutations) {
+		[].forEach.call(document.querySelectorAll('[data-toggle-switch-watch]'), (w) => {
+			let observer = new MutationObserver(function(mutations) {
 				// target will match between all mutations so just use first
 				initialize(mutations[0].target);
 			});
