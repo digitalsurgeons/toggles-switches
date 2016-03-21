@@ -12,6 +12,8 @@ module.exports = class Toggle {
 		this.events = {};
 
 		// if target is empty default to element itself
+		// TODO: check if first and last chars are brackets
+		// if so create an array with each node
 		this.target = this.target ? document.querySelectorAll(this.target) : [this.element];
 
 		// mark this element as initialised
@@ -26,7 +28,7 @@ module.exports = class Toggle {
 
 	// initialize custom events
 	// spotty support for CustomEvent :/
-	_createCustomEvents() {
+	createCustomEvents() {
 		// create 4 types of event
 		this.events = {
 			'toggled': document.createEvent('Event'),
@@ -42,7 +44,7 @@ module.exports = class Toggle {
 	}
 
 	// cross browser event trigger
-	_triggerEvent(event) {
+	triggerEvent(event) {
 		// no event name supplied or invalid
 		// instance has no element
 		if (!event || typeof event !== 'string' || !this.element) {
@@ -69,7 +71,7 @@ module.exports = class Toggle {
 	}
 
 	// bind a single event listener
-	_bindEventListener(event) {
+	bindEventListener(event) {
 		this.element.addEventListener(event, function(e) {
 			e.preventDefault();
 
@@ -112,44 +114,8 @@ module.exports = class Toggle {
 		}.bind(this));
 	}
 
-	// add class of className to target
-	_addClass() {
-		// could be single or multiple targets
-		[].forEach.call(this.target, function(el) {
-			if (el.classList.contains(this.className)) {
-				return false;
-			}
-
-			el.classList.add(this.className);
-			this._triggerEvent.apply(this, ['added']);
-		}.bind(this));
-
-		// optionally add class to element itself
-		if (this.self) {
-			this.element.classList.add(this.className);
-		}
-	}
-
-	// remove class of className from target
-	_removeClass() {
-		// could be single or multiple targets
-		[].forEach.call(this.target, function(el) {
-			if (!el.classList.contains(this.className)) {
-				return false;
-			}
-
-			el.classList.remove(this.className);
-			this._triggerEvent.apply(this, ['removed']);
-		}.bind(this));
-
-		// optionally add class to element itself
-		if (this.self) {
-			this.element.classList.remove(this.className);
-		}
-	}
-
 	// toggle class of className on target
-	_toggleClass() {
+	toggleClass() {
 		// could be single or multiple targets
 		[].forEach.call(this.target, function(el) {
 			el.classList.toggle(this.className);

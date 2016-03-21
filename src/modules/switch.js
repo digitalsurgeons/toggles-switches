@@ -53,6 +53,42 @@ module.exports = class Switch extends Toggle {
 		}
 	}
 
+	// add class of className to target
+	addClass() {
+		// could be single or multiple targets
+		[].forEach.call(this.target, function(el) {
+			if (el.classList.contains(this.className)) {
+				return false;
+			}
+
+			el.classList.add(this.className);
+			this._triggerEvent.apply(this, ['added']);
+		}.bind(this));
+
+		// optionally add class to element itself
+		if (this.self) {
+			this.element.classList.add(this.className);
+		}
+	}
+
+	// remove class of className from target
+	removeClass() {
+		// could be single or multiple targets
+		[].forEach.call(this.target, function(el) {
+			if (!el.classList.contains(this.className)) {
+				return false;
+			}
+
+			el.classList.remove(this.className);
+			this._triggerEvent.apply(this, ['removed']);
+		}.bind(this));
+
+		// optionally add class to element itself
+		if (this.self) {
+			this.element.classList.remove(this.className);
+		}
+	}
+
 	// switch specific replace class logic
 	replaceClass() {
 		[].forEach.call(this.target, function(el) {
