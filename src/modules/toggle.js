@@ -129,9 +129,11 @@ module.exports = class Toggle {
 	}
 };
 
-function checkBrakcet (str) {
+function checkIsArray (str) {
   if (str.startsWith('[') && str.endsWith(']')) {
-    return str.slice(1, str.length - 1).split(',')
+    return str.slice(1, str.length - 1).split(',');
   }
+
+  return str
 }
- 
+
