@@ -117,14 +117,27 @@ module.exports = class Toggle {
 	// toggle class of className on target
 	toggleClass() {
 		// could be single or multiple targets
-		[].forEach.call(this.target, function(el) {
-			el.classList.toggle(this.className);
+		[].forEach.call(this.target, function(el, index) {
+
+			if (Array.isArray(this.className)) {
+				el.classList.toggle(this.className[index]);
+			} else {
+				el.classList.toggle(this.className);
+			}
+
 			this._triggerEvent.apply(this, ['toggled']);
 		}.bind(this));
 
 		// optionally add class to element itself
 		if (this.self) {
-			this.element.classList.toggle(this.className);
+
+			// if class name is an array then just use active for self
+			if (Array.isArray(this.className)) {
+				this.element.classList.toggle('active');
+			} else {
+				this.element.classList.toggle(this.className);
+			}
+
 		}
 	}
 };
