@@ -30,7 +30,7 @@ module.exports = class Switch extends Toggle {
 
 		// will be array of length 1 if single event
 		events.forEach(function(event) {
-			this._bindEventListener.apply(this, [event]);
+			this.bindEventListener.apply(this, [event]);
 		}.bind(this));
 	}
 
@@ -44,25 +44,33 @@ module.exports = class Switch extends Toggle {
 		// class not applied this is an on switch so add
 		} else if (this.type === 'on') {
 
-			this._addClass.apply(this);
+			this.addClass.apply(this);
 
 		// class applied this is an off switch so remove
 		} else if (this.type === 'off') {
 
-			this._removeClass.apply(this);
+			this.removeClass.apply(this);
 		}
 	}
 
 	// add class of className to target
 	addClass() {
 		// could be single or multiple targets
-		[].forEach.call(this.target, function(el) {
-			if (el.classList.contains(this.className)) {
-				return false;
+		[].forEach.call(this.target, function(el, index) {
+
+			if (Array.isArray(this.className)) {
+				if (el.length) {
+					[].forEach.call(el, (el1) => {
+						el1.classList.add(this.className[index]);
+					});
+				} else {
+					el.classList.add(this.className[index]);
+				}
+			} else {
+				el.classList.add(this.className);
 			}
 
-			el.classList.add(this.className);
-			this._triggerEvent.apply(this, ['added']);
+			this.triggerEvent.apply(this, ['added']);
 		}.bind(this));
 
 		// optionally add class to element itself
@@ -74,13 +82,21 @@ module.exports = class Switch extends Toggle {
 	// remove class of className from target
 	removeClass() {
 		// could be single or multiple targets
-		[].forEach.call(this.target, function(el) {
-			if (!el.classList.contains(this.className)) {
-				return false;
+		[].forEach.call(this.target, function(el, index) {
+
+			if (Array.isArray(this.className)) {
+				if (el.length) {
+					[].forEach.call(el, (el1) => {
+						el1.classList.remove(this.className[index]);
+					});
+				} else {
+					el.classList.remove(this.className[index]);
+				}
+			} else {
+				el.classList.remove(this.className);
 			}
 
-			el.classList.remove(this.className);
-			this._triggerEvent.apply(this, ['removed']);
+			this.triggerEvent.apply(this, ['removed']);
 		}.bind(this));
 
 		// optionally add class to element itself
@@ -94,7 +110,7 @@ module.exports = class Switch extends Toggle {
 		[].forEach.call(this.target, function(el) {
 			el.classList.remove(this.remove);
 			el.classList.add(this.add);
-			this._triggerEvent.apply(this, ['replaced']);
+			this.triggerEvent.apply(this, ['replaced']);
 		}.bind(this));
 	}
 };

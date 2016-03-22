@@ -13,7 +13,7 @@
 
     <h1>Toggles &amp; Switches Tests</h1>
 
-    <h2>Basic</h2>
+    <!-- <h2>Basic</h2>
     <ol>
         <li>
             <p><strong>Add .active to self</strong></p>
@@ -142,7 +142,7 @@
                 <option>Option 3</option>
             </select>
         </li>
-    </ol>
+    </ol> -->
 
 	<h2>Array Syntax</h2>
 	<ol>
@@ -155,17 +155,17 @@
 		<li>
             <p><strong>Switch on multiple classes on multiple selectors</strong></p>
             <pre><code>data-toggle="[body, h2]" data-toggle-class="[this-class, that-class]"</code></pre>
-            <a href="#" data-switch-on="[body, h2]" data-switch-on-class="[this-class, that-class]">Click</a>
+            <a href="#" data-switch-on="[body, h2]" data-switch-class="[this-class, that-class]">Click</a>
         </li>
 
 		<li>
             <p><strong>Switch off multiple classes on multiple selectors</strong></p>
             <pre><code>data-toggle="[body, h2]" data-toggle-class="[this-class, that-class]"</code></pre>
-            <a href="#" data-switch-off="[body, h2]" data-switch-off-class="[this-class, that-class]">Click</a>
+            <a href="#" data-switch-off="[body, h2]" data-switch-class="[this-class,      that-class]">Click</a>
         </li>
     </ol>
 
-    <h2>Composing</h2>
+    <!-- <h2>Composing</h2>
     <ol>
         <li>
             <p><strong>Toggle .active on self on mouseover and remove .inactive from body on click</strong></p>
@@ -190,10 +190,10 @@
     <ol data-toggle-switch-watch class="switch-watchers">
         <li><a href="#" data-switch-on>Switch</a></li>
     </ol>
-    <button class="add-switch">Add Switches</button>
+    <button class="add-switch">Add Switches</button> -->
 
     <script src="dist/toggles-switches.js"></script>
-    <script>
+    <!-- <script>
 	document.addEventListener('DOMContentLoaded', function() {
 
 		[].forEach.call(document.querySelectorAll('[data-toggle], [data-switch-on], [data-switch-off], [data-toggle-replace], [data-switch-replace]'), function(btn) {
@@ -265,6 +265,6 @@
 		});
 
 	});
-    </script>
+    </script> -->
 </body>
 </htmL>

@@ -2,8 +2,8 @@ module.exports = class Toggle {
 	constructor(opts) {
 		this.type = opts.type;
 		this.element = opts.element;
-		this.target = this.checkIsArray(opts.target);
-		this.className = this.checkIsArray(opts.class) || 'active';
+		this.target = opts.target ? checkIsArray(opts.target) : [this.element];
+		this.className = opts.class ? checkIsArray(opts.class) : 'active';
 		this.add = opts.add || 'active';
 		this.remove = opts.remove || 'inactive';
 		this.event = opts.event || 'click';
@@ -14,21 +14,18 @@ module.exports = class Toggle {
 		// if target is empty default to element itself
 		// TODO: check if first and last chars are brackets
 		// if so create an array with each node
-		if (Array.isArray(this.target)) {
+		if (Array.isArray(this.target) && this.target.length > 1) {
 			// loop through and create nodes
-			this.target.forEach(function(el, index) {
-				this.target[index] = document.querySelector(el);
+			this.target.forEach((el, index) => {
+				this.target[index] = document.querySelectorAll(el);
 			});
-
-		} else {
-			this.target = this.target ? document.querySelectorAll(this.target) : [this.element];
 		}
 
 		// mark this element as initialised
 		this.element.setAttribute('data-toggle-switch', 'toggle');
 
 		// set up toggle custom events
-		this._createCustomEvents.apply(this);
+		this.createCustomEvents();
 
 		// set up toggle event listeners
 		this.bindEventListeners();
@@ -74,7 +71,7 @@ module.exports = class Toggle {
 
 		// will be array of length 1 if single event
 		events.forEach(function(event) {
-			this._bindEventListener.apply(this, [event]);
+			this.bindEventListener.apply(this, [event]);
 		}.bind(this));
 	}
 
@@ -97,7 +94,7 @@ module.exports = class Toggle {
 		if (this.type === 'replace') {
 			this.replaceClass();
 		} else {
-			this._toggleClass.apply(this);
+			this.toggleClass.apply(this);
 		}
 	}
 
@@ -118,7 +115,7 @@ module.exports = class Toggle {
 				el.classList.remove(this.add);
 			}
 
-			this._triggerEvent.apply(this, ['replaced']);
+			this.triggerEvent.apply(this, ['replaced']);
 		}.bind(this));
 	}
 
@@ -128,12 +125,18 @@ module.exports = class Toggle {
 		[].forEach.call(this.target, function(el, index) {
 
 			if (Array.isArray(this.className)) {
-				el.classList.toggle(this.className[index]);
+				if (el.length) {
+					[].forEach.call(el, (el1) => {
+						el1.classList.toggle(this.className[index]);
+					});
+				} else {
+					el.classList.toggle(this.className[index]);
+				}
 			} else {
 				el.classList.toggle(this.className);
 			}
 
-			this._triggerEvent.apply(this, ['toggled']);
+			this.triggerEvent.apply(this, ['toggled']);
 		}.bind(this));
 
 		// optionally add class to element itself
@@ -150,11 +153,16 @@ module.exports = class Toggle {
 	}
 };
 
-function checkIsArray (str) {
-  if (str.startsWith('[') && str.endsWith(']')) {
-    return str.slice(1, str.length - 1).split(',');
-  }
+function checkIsArray(str) {
+	if (str.startsWith('[') && str.endsWith(']')) {
+		let arr = str.slice(1, str.length - 1).split(',');
 
-  return str
+		arr = arr.map(function(el) {
+			return el.trim();
+		});
+
+		return arr;
+	}
+
+	return str;
 }
-

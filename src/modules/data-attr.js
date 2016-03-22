@@ -240,7 +240,7 @@ module.exports = function(Toggle, Switch) {
 			switchesReplace = containerNode.querySelectorAll('[data-switch-replace]' + notInitialized),
 			switchesOnGroup = containerNode.querySelectorAll('[data-switch-on-group]' + notInitialized),
 			switchesOffGroup = containerNode.querySelectorAll('[data-switch-off-group]' + notInitialized),
-			switchesToggleGroup = containerNode.querySelectorAll('[data-toggle-group]' + notInitialized);
+			toggleGroup = containerNode.querySelectorAll('[data-toggle-group]' + notInitialized);
 
 		// set up toggles & switches
 		[].forEach.call(toggles, initializers.toggles);
@@ -250,7 +250,7 @@ module.exports = function(Toggle, Switch) {
 		[].forEach.call(switchesReplace, initializers.switchesReplace);
 		[].forEach.call(switchesOnGroup, initializers.switchesOnGroup);
 		[].forEach.call(switchesOffGroup, initializers.switchesOffGroup);
-		[].forEach.call(switchesToggleGroup, initializers.switchesToggleGroup);
+		[].forEach.call(toggleGroup, initializers.toggleGroup);
 	}
 
 	// create mutation observers for watchers
