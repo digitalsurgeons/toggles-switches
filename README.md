@@ -1,6 +1,6 @@
 # Toggles & Switches
 
-**Toggles & Switches** were born out of [Gumby Framework](http://gumbyframework.com), a responsive [Sass](http://sass-lang.com/) framework built by [Digital Surgeons](http://www.digitalsurgeons.com/). Now a standalone library, **Toggles & Switches** aims to eliminate boilerplate UI code and provide a declarative syntax for applying CSS states and animations based on user interaction. Check out the [demo page](http://dsurgeons.github.io/Toggles-Switches/) for real world examples.
+**Toggles & Switches** were born out of [Gumby Framework](http://gumbyframework.com), a responsive [Sass](http://sass-lang.com/) framework built by [Digital Surgeons](http://www.digitalsurgeons.com/). Now a standalone library, **Toggles & Switches** aims to eliminate boilerplate UI code and provide a declarative syntax for applying CSS states and animations based on user interaction. Check out the [demo page](http://digitalsurgeons.github.io/toggles-switches/) for real world examples.
 
 CSS is powerful and usually handles a good deal of UI state and animation alone. Because pseudo states only exist for :hover, :active, :focus and :visited, developers must rely on JavaScript to bind to other user interaction events and add or remove CSS classes accordingly.
 
